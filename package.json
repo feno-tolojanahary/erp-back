@@ -1,0 +1,24 @@
+{
+  "name": "erp-back",
+  "version": "1.0.0",
+  "description": "A sample ERP backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feno-tolojanahary/erp-back.git"
+  },
+  "keywords": [
+    "typescript",
+    "express",
+    "nodejs"
+  ],
+  "author": "Feno TOLO",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/feno-tolojanahary/erp-back/issues"
+  },
+  "homepage": "https://github.com/feno-tolojanahary/erp-back#readme"
+}
