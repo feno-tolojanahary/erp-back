@@ -1,5 +1,6 @@
-import express, { Application } from 'express';
-import Routes from "./routes/index";
+import express from 'express';
+import Routes from "@routes/index";
+import { responseHandler } from '@middlewares/response.middleware';
 
 export default class App {
     public app: express.Application;
@@ -8,6 +9,7 @@ export default class App {
         this.app = express();
         this.initializeMiddlewares();
         this.initializeRoutes();
+        this.initializeResponseHandler();
     }
 
     private initializeMiddlewares() {
@@ -17,6 +19,10 @@ export default class App {
 
     private initializeRoutes() {
         new Routes(this.app);
+    }
+
+    private initializeResponseHandler() {
+        this.app.use(responseHandler);
     }
 
     public listen(port: number) {

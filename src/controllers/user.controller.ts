@@ -1,19 +1,56 @@
+import UserService from '@services/user.service';
 import { NextFunction, Response, Request } from 'express';
-import UserService from '../services/user.service';
-import { User } from '../interfaces/users.interface';
+import { User } from '@interfaces/users.interface';
+import { DataResponse } from '@interfaces/index.interface';
+import { CreateUserDto } from '@dtos/user.dto';
+import { validate } from 'class-validator';
+import { HttpException } from '@exceptions/HttpException';
 
 class UserController {
-    public userService = new UserService();
+    public userService = new UserService;
 
-    public getUsers = async (req: Request, res: Response) => {
-        const allUsers: User[] = await this.userService.findAllUser();
-        res.status(200).json({ data: allUsers, message: "Users list" });
+    public getUsers = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const allUsers: User[] = await this.userService.findAllUser();
+            next({ data: allUsers, message: "Users list" } as DataResponse);
+        } catch(err) {
+            next(err);
+        }
     }
 
-    public createUser = async (req: Request, res: Response) => {
-        const userData = req.body;
-        const createdUserData: User = await this.userService.createUser(userData);
-        res.status(200).json({ data: createdUserData, message: "User created" });
+    public createUser = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const userData = req.body;
+            const validationErros = await validate(new CreateUserDto(userData), { validationError: { target: false } })
+            if (validationErros.length > 0) {
+                throw new HttpException(500, JSON.stringify(validationErros));
+            }
+            const createdUserData: User = await this.userService.createUser(userData);
+            next({ data: createdUserData, message: "User created" } as DataResponse);
+        } catch(err) {
+            next(err)
+        }
+    }
+
+    public updateUser = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const id: number = parseInt(req.params.id);
+            const userData = req.body;
+            const result = await this.userService.updateUser(userData, id);
+            next({ data: result, message: "Updated user" });
+        } catch(err) {
+            next(err);
+        }
+    }
+
+    public destroyUser = async(req: Request, res: Response, next: NextFunction) => {
+        try {
+            const id: number = parseInt(req.params.id);
+            const result = await this.userService.deleteUser(id);
+            next({data: result, message: "Deleted user"});
+        } catch(err) {
+            next(err);
+        }
     }
 }
 

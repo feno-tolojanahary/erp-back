@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon dist/index.js",
     "build": "npx tsc & npx tsc-alias",
-    "dev": "concurrently \"npx tsc --watch & npx tsc-alias -w\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"npx tsc-alias -w\" \"nodemon -q dist/index.js\""
   },
   "repository": {
     "type": "git",

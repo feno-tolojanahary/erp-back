@@ -1,9 +1,14 @@
 import { Application } from 'express';
-import userRoutes from './UserRoutes';
+import UserRoutes from './user.route';
 
-export default class Route {
-    
+const ROUTES_CLASS = [
+    UserRoutes
+]
+
+export default class Route {    
     constructor(app: Application) {
-        app.use('/users', userRoutes);
+        ROUTES_CLASS.forEach(Routes => {
+            app.use(`/${Routes.path}`, new Routes().router);
+        });
     }
 }
