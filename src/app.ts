@@ -1,6 +1,7 @@
 import express from 'express';
 import Routes from "@routes/index";
 import { responseHandler } from '@middlewares/response.middleware';
+import path from 'path';
 
 export default class App {
     public app: express.Application;
@@ -19,6 +20,7 @@ export default class App {
 
     private initializeRoutes() {
         new Routes(this.app);
+        this.app.use('/static', express.static(path.join(__dirname, '../src/static')))
     }
 
     private initializeResponseHandler() {

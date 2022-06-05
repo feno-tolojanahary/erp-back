@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const index_1 = __importDefault(require("./routes/index"));
 const response_middleware_1 = require("./middlewares/response.middleware");
+const path_1 = __importDefault(require("path"));
 class App {
     constructor() {
         this.app = (0, express_1.default)();
@@ -19,6 +20,7 @@ class App {
     }
     initializeRoutes() {
         new index_1.default(this.app);
+        this.app.use('/static', express_1.default.static(path_1.default.join(__dirname, '../src/static')));
     }
     initializeResponseHandler() {
         this.app.use(response_middleware_1.responseHandler);

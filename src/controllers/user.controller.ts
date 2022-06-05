@@ -7,11 +7,11 @@ import { validate } from 'class-validator';
 import { HttpException } from '@exceptions/HttpException';
 
 class UserController {
-    public userService = new UserService;
+    public userService = new UserService();
 
     public getUsers = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const allUsers: User[] = await this.userService.findAllUser();
+            const allUsers: User[] = await this.userService.findAll();
             next({ data: allUsers, message: "Users list" } as DataResponse);
         } catch(err) {
             next(err);
@@ -25,7 +25,7 @@ class UserController {
             if (validationErros.length > 0) {
                 throw new HttpException(500, JSON.stringify(validationErros));
             }
-            const createdUserData: User = await this.userService.createUser(userData);
+            const createdUserData: User = await this.userService.create(userData);
             next({ data: createdUserData, message: "User created" } as DataResponse);
         } catch(err) {
             next(err)
@@ -36,7 +36,7 @@ class UserController {
         try {
             const id: number = parseInt(req.params.id);
             const userData = req.body;
-            const result = await this.userService.updateUser(userData, id);
+            const result = await this.userService.update(userData, id);
             next({ data: result, message: "Updated user" });
         } catch(err) {
             next(err);
@@ -46,7 +46,7 @@ class UserController {
     public destroyUser = async(req: Request, res: Response, next: NextFunction) => {
         try {
             const id: number = parseInt(req.params.id);
-            const result = await this.userService.deleteUser(id);
+            const result = await this.userService.delete(id);
             next({data: result, message: "Deleted user"});
         } catch(err) {
             next(err);

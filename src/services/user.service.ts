@@ -2,33 +2,19 @@ import { CreateUserDto } from "@dtos/user.dto";
 import { HttpException } from "@exceptions/HttpException";
 import User from "@models/user.model";
 import { Op } from "sequelize";
+import BaseService from "./base.service";
 
-class UserService {
-    public user = User;
+class UserService extends BaseService<User, CreateUserDto> {
+    constructor() {
+        super(new User());
+    }
 
-    public async createUser(userData: CreateUserDto): Promise<User> {
-        const findUser = await this.user.findOne({ where: { [Op.or]: [ { email: userData.email }, { name: userData.name } ]} });
+    public async create(userData: CreateUserDto): Promise<User> {
+        const findUser = await this.model.findOne({ where: { [Op.or]: [ { email: userData.email }, { name: userData.name } ]} });
         if (findUser) {
             throw new HttpException(400, "User already exists");
         }
-        const createdUser: Promise<User> = this.user.create(userData as User);
-        return createdUser;
-    }
-
-    public async findAllUser(): Promise<User[]> {
-        const allUsers: User[] = await this.user.findAll();
-        return allUsers;
-    }
-
-    public async updateUser(userData: CreateUserDto, id: number): Promise<User | null> {
-        await this.user.update(userData, {where: { id }});
-        const updatedData: Promise<User | null> = this.user.findByPk(id);
-        return updatedData;
-    }
-
-    public deleteUser(id: number): Promise<number> {
-        const destroyedResult: Promise<number> = this.user.destroy({ where: { id }});
-        return destroyedResult;
+        return super.create(userData);
     }
 }
 

@@ -18,10 +18,10 @@ const class_validator_1 = require("class-validator");
 const HttpException_1 = require("../exceptions/HttpException");
 class UserController {
     constructor() {
-        this.userService = new user_service_1.default;
+        this.userService = new user_service_1.default();
         this.getUsers = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const allUsers = yield this.userService.findAllUser();
+                const allUsers = yield this.userService.findAll();
                 next({ data: allUsers, message: "Users list" });
             }
             catch (err) {
@@ -35,7 +35,7 @@ class UserController {
                 if (validationErros.length > 0) {
                     throw new HttpException_1.HttpException(500, JSON.stringify(validationErros));
                 }
-                const createdUserData = yield this.userService.createUser(userData);
+                const createdUserData = yield this.userService.create(userData);
                 next({ data: createdUserData, message: "User created" });
             }
             catch (err) {
@@ -46,7 +46,7 @@ class UserController {
             try {
                 const id = parseInt(req.params.id);
                 const userData = req.body;
-                const result = yield this.userService.updateUser(userData, id);
+                const result = yield this.userService.update(userData, id);
                 next({ data: result, message: "Updated user" });
             }
             catch (err) {
@@ -56,7 +56,7 @@ class UserController {
         this.destroyUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = parseInt(req.params.id);
-                const result = yield this.userService.deleteUser(id);
+                const result = yield this.userService.delete(id);
                 next({ data: result, message: "Deleted user" });
             }
             catch (err) {
