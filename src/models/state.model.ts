@@ -27,7 +27,7 @@ class State extends Model<StateAttributes, StateCreationAttributes> implements S
     declare readonly updatedAt: Date;
 }
 
-State.init({
-    ...SequelizeAttributes.
-})
+// State.init({
+//     ...SequelizeAttributes.
+// })
 
