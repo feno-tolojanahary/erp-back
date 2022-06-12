@@ -14,10 +14,10 @@ class UserRoutes {
     }
 
     initializeRoutes() {
-        this.router.get('/', this.userController.getUsers);
-        this.router.post('/', bodyNotEmpty, this.userController.createUser);
-        this.router.put('/:id', bodyNotEmpty, this.userController.updateUser);
-        this.router.delete('/:id', this.userController.destroyUser);
+        this.router.get('/', this.userController.getAll);
+        this.router.post('/', bodyNotEmpty, this.userController.create);
+        this.router.put('/:id', bodyNotEmpty, this.userController.update);
+        this.router.delete('/:id', this.userController.destroy);
     }
 }
 

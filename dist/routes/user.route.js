@@ -13,10 +13,10 @@ class UserRoutes {
         this.initializeRoutes();
     }
     initializeRoutes() {
-        this.router.get('/', this.userController.getUsers);
-        this.router.post('/', checkReqUtil_middleware_1.bodyNotEmpty, this.userController.createUser);
-        this.router.put('/:id', checkReqUtil_middleware_1.bodyNotEmpty, this.userController.updateUser);
-        this.router.delete('/:id', this.userController.destroyUser);
+        this.router.get('/', this.userController.getAll);
+        this.router.post('/', checkReqUtil_middleware_1.bodyNotEmpty, this.userController.create);
+        this.router.put('/:id', checkReqUtil_middleware_1.bodyNotEmpty, this.userController.update);
+        this.router.delete('/:id', this.userController.destroy);
     }
 }
 UserRoutes.path = "users";

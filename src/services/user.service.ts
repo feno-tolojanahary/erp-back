@@ -6,11 +6,11 @@ import BaseService from "./base.service";
 
 class UserService extends BaseService<User, CreateUserDto> {
     constructor() {
-        super(new User());
+        super(User);
     }
 
     public async create(userData: CreateUserDto): Promise<User> {
-        const findUser = await this.model.findOne({ where: { [Op.or]: [ { email: userData.email }, { name: userData.name } ]} });
+        const findUser = await this.Model.findOne({ where: { [Op.or]: [ { email: userData.email }, { name: userData.name } ]} });
         if (findUser) {
             throw new HttpException(400, "User already exists");
         }

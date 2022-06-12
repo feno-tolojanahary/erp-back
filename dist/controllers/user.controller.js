@@ -16,48 +16,19 @@ const user_service_1 = __importDefault(require("../services/user.service"));
 const user_dto_1 = require("../dtos/user.dto");
 const class_validator_1 = require("class-validator");
 const HttpException_1 = require("../exceptions/HttpException");
-class UserController {
+const base_controller_1 = __importDefault(require("./base.controller"));
+class UserController extends base_controller_1.default {
     constructor() {
-        this.userService = new user_service_1.default();
-        this.getUsers = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const allUsers = yield this.userService.findAll();
-                next({ data: allUsers, message: "Users list" });
-            }
-            catch (err) {
-                next(err);
-            }
-        });
+        super(user_service_1.default);
         this.createUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log("need to call create base");
                 const userData = req.body;
                 const validationErros = yield (0, class_validator_1.validate)(new user_dto_1.CreateUserDto(userData), { validationError: { target: false } });
                 if (validationErros.length > 0) {
                     throw new HttpException_1.HttpException(500, JSON.stringify(validationErros));
                 }
-                const createdUserData = yield this.userService.create(userData);
-                next({ data: createdUserData, message: "User created" });
-            }
-            catch (err) {
-                next(err);
-            }
-        });
-        this.updateUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const id = parseInt(req.params.id);
-                const userData = req.body;
-                const result = yield this.userService.update(userData, id);
-                next({ data: result, message: "Updated user" });
-            }
-            catch (err) {
-                next(err);
-            }
-        });
-        this.destroyUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const id = parseInt(req.params.id);
-                const result = yield this.userService.delete(id);
-                next({ data: result, message: "Deleted user" });
+                this.create(req, res, next);
             }
             catch (err) {
                 next(err);

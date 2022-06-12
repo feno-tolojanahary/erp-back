@@ -18,14 +18,14 @@ const sequelize_1 = require("sequelize");
 const base_service_1 = __importDefault(require("./base.service"));
 class UserService extends base_service_1.default {
     constructor() {
-        super(new user_model_1.default());
+        super(user_model_1.default);
     }
     create(userData) {
         const _super = Object.create(null, {
             create: { get: () => super.create }
         });
         return __awaiter(this, void 0, void 0, function* () {
-            const findUser = yield this.model.findOne({ where: { [sequelize_1.Op.or]: [{ email: userData.email }, { name: userData.name }] } });
+            const findUser = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: userData.email }, { name: userData.name }] } });
             if (findUser) {
                 throw new HttpException_1.HttpException(400, "User already exists");
             }

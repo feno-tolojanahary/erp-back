@@ -11,29 +11,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 class BaseService {
     constructor(model) {
-        this.model = model;
+        this.Model = model;
     }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const createdData = this.model.create(data);
+            const createdData = this.Model.create(data);
             return createdData;
         });
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const allData = yield this.model.findAll();
+            const allData = yield this.Model.findAll();
             return allData;
         });
     }
     update(data, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.model.update(data, { where: { id } });
-            const updatedData = this.model.findByPk(id);
+            yield this.Model.update(data, { where: { id } });
+            const updatedData = this.Model.findByPk(id);
             return updatedData;
         });
     }
     delete(id) {
-        const destroyedResult = this.model.destroy({ where: { id } });
+        const destroyedResult = this.Model.destroy({ where: { id } });
         return destroyedResult;
     }
 }
