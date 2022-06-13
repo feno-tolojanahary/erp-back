@@ -1,9 +1,12 @@
 import { Application } from 'express';
+import AddressStateRoutes from './addressState.route';
 import UserRoutes from './user.route';
 
 const ROUTES_CLASS = [
-    UserRoutes
+    UserRoutes,
+    AddressStateRoutes
 ]
+
 
 export default class Route {    
     constructor(app: Application) {

@@ -26,7 +26,7 @@ console.log("Models is executed");
     try {
         yield sequelize.authenticate();
         console.log("Successfuly connecting to database");
-        // await sequelize.sync({ force: true })
+        // await sequelize.sync({ alter: true })
     }
     catch (err) {
         console.error("Unable connecting to DB: ", err);

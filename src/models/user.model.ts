@@ -42,5 +42,4 @@ UserModel.init({
     sequelize
 })
 
-
 export default UserModel;
