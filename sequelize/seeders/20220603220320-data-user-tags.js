@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('user_tags', [
+   await queryInterface.bulkInsert('tags', [
       {
         name: "Consulting Services"
       },
@@ -34,6 +34,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('user_tags', null, {});
+    await queryInterface.bulkDelete('tags', null, {});
   }
 };

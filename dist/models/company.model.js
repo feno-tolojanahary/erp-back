@@ -46,7 +46,7 @@ Company.init({
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: {
-                tableName: 'user_tags',
+                tableName: 'tags',
                 schema: 'public'
             },
             key: 'id'

@@ -74,7 +74,7 @@ Company.init({
         type: DataTypes.INTEGER,
         references: {
             model: {
-                tableName: 'user_tags',
+                tableName: 'tags',
                 schema: 'public'
             },
             key: 'id'
