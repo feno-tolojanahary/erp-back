@@ -1,5 +1,5 @@
-import AddressStateController from "@controllers/addressState.controller";
-import BaseRoutes from "./base.route";
+import AddressStateController from "@controllers/address/addressState.controller";
+import BaseRoutes from "../base.route";
 
 
 class AddressStateRoutes extends BaseRoutes {

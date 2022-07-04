@@ -1,0 +1,52 @@
+'use strict';
+
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.createTable('address', { 
+      id: {
+          type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+          autoIncrement: true,
+          primaryKey: true
+      },
+      street: {
+          type: Sequelize.DataTypes.STRING,
+          allowNull: false
+      },
+      street2: {
+          type: Sequelize.DataTypes.STRING
+      },
+      city: {
+          type: Sequelize.DataTypes.STRING
+      },
+      zip: {
+          type: Sequelize.DataTypes.STRING
+      },
+      state_id: {
+          type: Sequelize.DataTypes.INTEGER,
+          references: {
+              model: {
+                tableName: "address_states",
+                schema: "public"
+              },
+              key: 'id'
+          }
+      },
+      country_id: {
+          type: Sequelize.DataTypes.INTEGER,
+          references: {
+              model: {
+                  tableName: 'address_country',
+                  schema: 'public'
+              },
+              key: 'id'
+          }
+      },
+      createdAt: Sequelize.DataTypes.DATE,
+      updatedAt: Sequelize.DataTypes.DATE
+    });
+  },
+
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('address');
+  }
+};

@@ -1,10 +1,14 @@
 import { Application } from 'express';
-import AddressStateRoutes from './addressState.route';
+import AddressRoutes from './address/address.route';
+import AddressStateRoutes from './address/addressState.route';
+import CompanyRoutes from './company.route';
 import UserRoutes from './user.route';
 
 const ROUTES_CLASS = [
     UserRoutes,
-    AddressStateRoutes
+    AddressRoutes,
+    AddressStateRoutes,
+    CompanyRoutes
 ]
 
 
