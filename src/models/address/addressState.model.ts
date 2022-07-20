@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "..";
-import User from '../user.model';
+import User from '../users/user.model';
 
 // Entity
 export interface AddressStateAttributes {

@@ -2,6 +2,7 @@ import express from 'express';
 import Routes from "@routes/index";
 import { responseHandler } from '@middlewares/response.middleware';
 import path from 'path';
+import cors from 'cors';
 
 export default class App {
     public app: express.Application;
@@ -16,6 +17,8 @@ export default class App {
     private initializeMiddlewares() {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(cors());
+
     }
 
     private initializeRoutes() {

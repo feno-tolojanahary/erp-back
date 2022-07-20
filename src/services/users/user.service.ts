@@ -1,8 +1,8 @@
 import { CreateUserDto } from "@dtos/user.dto";
 import { HttpException } from "@exceptions/HttpException";
-import User from "@models/user.model";
+import User from "@models/users/user.model";
 import { Op } from "sequelize";
-import BaseService from "./base.service";
+import BaseService from "../base.service";
 
 class UserService extends BaseService<User, CreateUserDto> {
     constructor() {

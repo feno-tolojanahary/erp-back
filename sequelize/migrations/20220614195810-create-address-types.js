@@ -3,7 +3,12 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('address_types', {
-      type: { type: Sequelize.DataTypes.STRING }
+      id: {
+        type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      name: { type: Sequelize.DataTypes.STRING }
     })
   },
 

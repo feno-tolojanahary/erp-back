@@ -13,19 +13,19 @@ module.exports = {
     */
     await queryInterface.bulkInsert('address_types', [
       {
-        type: "Contact"
+        name: "Contact"
       },
       {
-        type: "Invoice Address"
+        name: "Invoice Address"
       },
       {
-        type: "Delivery Address"
+        name: "Delivery Address"
       },
       {
-        type: "Other Address"
+        name: "Other Address"
       },
       {
-        type: "Private Address"
+        name: "Private Address"
       }
     ])
   },

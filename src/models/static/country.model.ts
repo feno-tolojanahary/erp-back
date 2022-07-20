@@ -14,7 +14,8 @@ const Country = sequelize.define('address_country', {
         type: DataTypes.STRING(2)
     }
 }, {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 })
 
 export default Country;

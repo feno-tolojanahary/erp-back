@@ -1,4 +1,4 @@
-import UserService from '@services/user.service';
+import UserService from '@services/users/user.service';
 import { NextFunction, Response, Request } from 'express';
 import { User } from '@interfaces/users.interface';
 import { CreateUserDto } from '@dtos/user.dto';
