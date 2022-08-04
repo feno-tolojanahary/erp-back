@@ -20,6 +20,10 @@ module.exports = {
           type: Sequelize.DataTypes.STRING,
           allowNull: false
       },
+      companyId: { 
+        type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+        defaultValue: 1
+      },
       created_by: {
           type: Sequelize.DataTypes.INTEGER,
           references: {

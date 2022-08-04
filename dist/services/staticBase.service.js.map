@@ -1,0 +1,1 @@
+{"version":3,"file":"staticBase.service.js","sourceRoot":"","sources":["../../src/services/staticBase.service.ts"],"names":[],"mappings":";;;;;;;;;;;AACA,MAAqB,iBAAiB;IAGlC,YAAY,KAAU;QAClB,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACvB,CAAC;IAEY,OAAO;;YAChB,MAAM,OAAO,GAAU,MAAM,IAAI,CAAC,KAAK,CAAC,OAAO,EAAE,CAAC;YAClD,OAAO,OAAO,CAAC;QACnB,CAAC;KAAA;CACJ;AAXD,oCAWC"}

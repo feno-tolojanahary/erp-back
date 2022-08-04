@@ -23,7 +23,10 @@ module.exports = {
         mobile: Sequelize.DataTypes.STRING,
         email: Sequelize.DataTypes.STRING,
         website: Sequelize.DataTypes.STRING,
-        
+        companyId: { 
+          type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+          defaultValue: 1
+        },
         createdAt: Sequelize.DataTypes.DATE,
         updatedAt: Sequelize.DataTypes.DATE
       });

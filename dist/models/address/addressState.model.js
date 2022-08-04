@@ -27,6 +27,10 @@ AddressState.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
+    companyId: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        defaultValue: 1
+    },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {

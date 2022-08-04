@@ -25,6 +25,12 @@ class BaseService {
             return allData;
         });
     }
+    findByCompany(companyId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const allData = yield this.Model.findAll({ where: { companyId } });
+            return allData;
+        });
+    }
     update(data, id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.Model.update(data, { where: { id } });

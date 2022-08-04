@@ -24,6 +24,10 @@ UserModel.init({
     mobile: sequelize_1.DataTypes.STRING,
     email: sequelize_1.DataTypes.STRING,
     website: sequelize_1.DataTypes.STRING,
+    companyId: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        defaultValue: 1
+    },
     createdAt: sequelize_1.DataTypes.DATE,
     updatedAt: sequelize_1.DataTypes.DATE
 }, {

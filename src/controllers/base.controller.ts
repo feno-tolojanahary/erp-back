@@ -18,9 +18,18 @@ export default abstract class BaseController {
         }
     }
 
+    public getByCompany = async (req: Request,                                                                      es: Response, next: NextFunction) => {
+        try {
+            const allUsers = await this.service.findByCompany(req.params.companyId);
+            next({ data: allUsers, message: `Get all list` } as DataResponse);
+        } catch (err) {
+            next(err)
+        }
+    }
+
     public create = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log("calling create base")
+            console.log("calling create base: ", req.body)
             const data = req.body;
             const createdData = await this.service.create(data);
             next({ data: createdData, message: "Data created" } as DataResponse);

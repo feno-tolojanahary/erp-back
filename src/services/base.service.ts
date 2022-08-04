@@ -16,6 +16,11 @@ export default abstract class BaseService<ModelType extends Model, CreateModelDt
         const allData: ModelType[] = await this.Model.findAll();
         return allData;
     }
+
+    public async findByCompany(companyId: number): Promise<ModelType[]> {
+        const allData: ModelType[] = await this.Model.findAll({ where: { companyId } });
+        return allData;
+    }
     
 
     public async update(data: CreateModelDto, id: number): Promise<ModelType | null> {

@@ -10,6 +10,7 @@ class BaseRoutes {
     }
     initializeDefaultRoutes() {
         this.router.get('/', this.controller.getAll);
+        this.router.get('/:companyId', this.controller.getByCompany);
         this.router.post('/', checkReqUtil_middleware_1.bodyNotEmpty, this.controller.create);
         this.router.put('/:id', checkReqUtil_middleware_1.bodyNotEmpty, this.controller.update);
         this.router.delete('/:id', this.controller.destroy);

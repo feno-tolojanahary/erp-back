@@ -20,9 +20,18 @@ class BaseController {
                 next(err);
             }
         });
+        this.getByCompany = (req, es, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const allUsers = yield this.service.findByCompany(req.params.companyId);
+                next({ data: allUsers, message: `Get all list` });
+            }
+            catch (err) {
+                next(err);
+            }
+        });
         this.create = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("calling create base");
+                console.log("calling create base: ", req.body);
                 const data = req.body;
                 const createdData = yield this.service.create(data);
                 next({ data: createdData, message: "Data created" });

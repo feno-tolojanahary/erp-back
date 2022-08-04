@@ -2,7 +2,7 @@ import { DataTypes, Model,  Optional } from "sequelize";
 import sequelize from "..";
 import { User } from "@interfaces/users.interface"
 
-export type UserCreationAttributes = Optional<User, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email'>
+export type UserCreationAttributes = Optional<User, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
     public id!: number;
@@ -13,10 +13,12 @@ export class UserModel extends Model<User, UserCreationAttributes> implements Us
     public mobile!: string | null;
     public email!: string | null;
     public website!: string | null;
-    
+    public companyId!: number | null;
+
     public createdAt!: Date;
     public updatedAt!: Date;
 }
+
 
 
 UserModel.init({
@@ -34,6 +36,10 @@ UserModel.init({
     mobile: DataTypes.STRING,
     email: DataTypes.STRING,
     website: DataTypes.STRING,
+    companyId: { 
+        type: DataTypes.INTEGER.UNSIGNED, 
+        defaultValue: 1 
+    },
     
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
