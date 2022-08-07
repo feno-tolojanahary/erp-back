@@ -13,23 +13,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpException_1 = require("../exceptions/HttpException");
-const user_model_1 = __importDefault(require("../models/user.model"));
+const contact_model_1 = __importDefault(require("../models/contact.model"));
 const sequelize_1 = require("sequelize");
-const base_service_1 = __importDefault(require("./base.service"));
+const base_service_1 = __importDefault(require("../base.service"));
 class UserService extends base_service_1.default {
     constructor() {
-        super(user_model_1.default);
+        super(contact_model_1.default);
     }
-    create(userData) {
+    create(data) {
         const _super = Object.create(null, {
             create: { get: () => super.create }
         });
         return __awaiter(this, void 0, void 0, function* () {
-            const findUser = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: userData.email }, { name: userData.name }] } });
+            const findUser = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: data.email }, { name: data.name }] } });
             if (findUser) {
                 throw new HttpException_1.HttpException(400, "User already exists");
             }
-            return _super.create.call(this, userData);
+            return _super.create.call(this, data);
         });
     }
 }

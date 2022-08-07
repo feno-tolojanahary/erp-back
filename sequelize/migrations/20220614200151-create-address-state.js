@@ -26,13 +26,7 @@ module.exports = {
       },
       created_by: {
           type: Sequelize.DataTypes.INTEGER,
-          references: {
-              model: {
-                tableName: 'users',
-                schema: 'public'
-              },
-              key: 'id'
-          }
+          defaultValue: 1
       },
       createdAt: Sequelize.DataTypes.DATE,
       updatedAt: Sequelize.DataTypes.DATE

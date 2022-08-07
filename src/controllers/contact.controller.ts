@@ -1,7 +1,7 @@
-import UserService from '@services/users/user.service';
+import ContactService from '@services/contact.service';
 import { NextFunction, Response, Request } from 'express';
-import { User } from '@interfaces/users.interface';
-import { CreateUserDto } from '@dtos/user.dto';
+import { Contact } from '@interfaces/contact.interface';
+import { CreateContactDto } from '@dtos/contact.dto';
 import { validate } from 'class-validator';
 import { HttpException } from '@exceptions/HttpException';
 import BaseController from './base.controller';
@@ -9,14 +9,14 @@ import BaseController from './base.controller';
 class UserController extends BaseController {
     
     constructor() {
-        super(UserService);
+        super(ContactService);
     }
 
-    public createUser = async (req: Request, res: Response, next: NextFunction) => {
+    public createContact = async (req: Request, res: Response, next: NextFunction) => {
         try {
             console.log("need to call create base")
-            const userData = req.body;
-            const validationErros = await validate(new CreateUserDto(userData), { validationError: { target: false } })
+            const data = req.body;
+            const validationErros = await validate(new CreateContactDto(data), { validationError: { target: false } })
             if (validationErros.length > 0) {
                 throw new HttpException(500, JSON.stringify(validationErros));
             }

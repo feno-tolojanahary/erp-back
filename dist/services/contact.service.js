@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const HttpException_1 = require("../../exceptions/HttpException");
-const contact_model_1 = __importDefault(require("../../models/contact.model"));
+const HttpException_1 = require("../exceptions/HttpException");
+const contact_model_1 = __importDefault(require("../models/contact.model"));
 const sequelize_1 = require("sequelize");
-const base_service_1 = __importDefault(require("../base.service"));
-class UserService extends base_service_1.default {
+const base_service_1 = __importDefault(require("./base.service"));
+class ContactService extends base_service_1.default {
     constructor() {
         super(contact_model_1.default);
     }
@@ -33,4 +33,4 @@ class UserService extends base_service_1.default {
         });
     }
 }
-exports.default = UserService;
+exports.default = ContactService;

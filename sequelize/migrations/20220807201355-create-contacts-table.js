@@ -8,7 +8,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-     queryInterface.createTable('users', { 
+     queryInterface.createTable('contacts', { 
         id: {
             type: Sequelize.DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
@@ -17,6 +17,15 @@ module.exports = {
         name: { 
             type: Sequelize.DataTypes.STRING,
             allowNull: false
+        },
+        jobPosition: Sequelize.DataTypes.STRING,
+        phone: Sequelize.DataTypes.STRING,
+        mobile: Sequelize.DataTypes.STRING,
+        email: Sequelize.DataTypes.STRING,
+        website: Sequelize.DataTypes.STRING,
+        companyId: { 
+          type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+          defaultValue: 1
         },
         createdAt: Sequelize.DataTypes.DATE,
         updatedAt: Sequelize.DataTypes.DATE
@@ -30,6 +39,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-     await queryInterface.dropTable('users');
+     await queryInterface.dropTable('contacts');
   }
 };

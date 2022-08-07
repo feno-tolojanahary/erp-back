@@ -1,10 +1,10 @@
 import { DataTypes, Model,  Optional } from "sequelize";
-import sequelize from "..";
-import { User } from "@interfaces/users.interface"
+import sequelize from ".";
+import { Contact } from "@interfaces/contact.interface"
 
-export type UserCreationAttributes = Optional<User, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
+export type ContactCreationAttributes = Optional<Contact, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
 
-export class UserModel extends Model<User, UserCreationAttributes> implements User {
+export class ContactModel extends Model<Contact, ContactCreationAttributes> implements Contact {
     public id!: number;
     public name!: string;
 
@@ -21,7 +21,7 @@ export class UserModel extends Model<User, UserCreationAttributes> implements Us
 
 
 
-UserModel.init({
+ContactModel.init({
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
@@ -44,8 +44,8 @@ UserModel.init({
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
 }, {
-    tableName: 'users',
+    tableName: 'contacts',
     sequelize
 })
 
-export default UserModel;
+export default ContactModel;
