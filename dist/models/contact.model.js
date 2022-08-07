@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactModel = void 0;
 const sequelize_1 = require("sequelize");
-const __1 = __importDefault(require(".."));
+const _1 = __importDefault(require("."));
 class ContactModel extends sequelize_1.Model {
 }
 exports.ContactModel = ContactModel;
@@ -32,6 +32,6 @@ ContactModel.init({
     updatedAt: sequelize_1.DataTypes.DATE
 }, {
     tableName: 'contacts',
-    sequelize: __1.default
+    sequelize: _1.default
 });
 exports.default = ContactModel;
