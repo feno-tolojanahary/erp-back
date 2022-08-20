@@ -20,7 +20,7 @@ Company.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    address_id: {
+    addressId: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: address_model_1.default,
@@ -43,7 +43,7 @@ Company.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    tag_id: {
+    tagId: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: {

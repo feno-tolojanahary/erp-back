@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER.UNSIGNED,
         defaultValue: 1
       },
-      created_by: {
+      createdBy: {
           type: Sequelize.DataTypes.INTEGER,
           defaultValue: 1
       },

@@ -18,6 +18,7 @@ module.exports = {
             type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
+        email: Sequelize.DataTypes.STRING,
         createdAt: Sequelize.DataTypes.DATE,
         updatedAt: Sequelize.DataTypes.DATE
       });

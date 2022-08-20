@@ -21,7 +21,7 @@ module.exports = {
       zip: {
           type: Sequelize.DataTypes.STRING
       },
-      state_id: {
+      stateId: {
           type: Sequelize.DataTypes.INTEGER,
           references: {
               model: {
@@ -31,7 +31,7 @@ module.exports = {
               key: 'id'
           }
       },
-      country_id: {
+      countryId: {
           type: Sequelize.DataTypes.INTEGER,
           references: {
               model: {

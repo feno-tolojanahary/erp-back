@@ -9,8 +9,8 @@ export interface AddressAttributes {
     street2?: string,
     city: string,
     zip?: string,
-    state_id: number,
-    country_id: number
+    stateId: number,
+    countryId: number
 }
 
 // Creation attribute
@@ -26,8 +26,8 @@ class Address extends Model <AddressAttributes, AddressCreationAttributes> imple
     declare street2: string;
     declare city: string;
     declare zip: string;
-    declare state_id: number;
-    declare country_id: number;
+    declare stateId: number;
+    declare countryId: number;
 
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
@@ -52,14 +52,14 @@ Address.init({
     zip: {
         type: DataTypes.STRING
     },
-    state_id: {
+    stateId: {
         type: DataTypes.INTEGER,
         references: {
             model: AddressState,
             key: 'id'
         }
     },
-    country_id: {
+    countryId: {
         type: DataTypes.INTEGER,
         references: {
             model: {

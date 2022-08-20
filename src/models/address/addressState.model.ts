@@ -8,7 +8,7 @@ export interface AddressStateAttributes {
     stateName: string,
     stateCode: string,
     country: string,
-    created_by: number,
+    createdBy: number,
     companyId: number
 }
 
@@ -24,7 +24,7 @@ class AddressState extends Model<AddressStateAttributes, AddressStateCreationAtt
     declare stateName: string;
     declare stateCode: string;
     declare country: string;
-    declare created_by: number;
+    declare createdBy: number;
     declare companyId: number;
 
     declare readonly createdAt: Date;
@@ -52,7 +52,7 @@ AddressState.init({
         type: DataTypes.INTEGER,
         defaultValue: 1
     },
-    created_by: {
+    createdBy: {
         type: DataTypes.INTEGER,
         references: {
             model: User,

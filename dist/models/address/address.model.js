@@ -28,14 +28,14 @@ Address.init({
     zip: {
         type: sequelize_1.DataTypes.STRING
     },
-    state_id: {
+    stateId: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: addressState_model_1.default,
             key: 'id'
         }
     },
-    country_id: {
+    countryId: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: {

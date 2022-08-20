@@ -12,7 +12,7 @@ module.exports = {
           type: Sequelize.DataTypes.STRING,
           allowNull: false
       },
-      address_id: {
+      addressId: {
           type: Sequelize.DataTypes.INTEGER,
           references: {
               model: {
@@ -38,7 +38,7 @@ module.exports = {
           type: Sequelize.DataTypes.STRING,
           allowNull: false
       },
-      tag_id: {
+      tagId: {
           type: Sequelize.DataTypes.INTEGER,
           references: {
               model: {

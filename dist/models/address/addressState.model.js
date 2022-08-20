@@ -31,7 +31,7 @@ AddressState.init({
         type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 1
     },
-    created_by: {
+    createdBy: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: user_1.default,

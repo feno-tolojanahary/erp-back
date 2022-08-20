@@ -7,13 +7,13 @@ import sequelize from ".";
 export interface CompanyAttributes {
     id: number,
     name: string,
-    address_id: number,
+    addressId: number,
     taxID?: string | null | undefined,
     phone?: string | null | undefined,
     mobile?: string | null | undefined,
     website?: string | null | undefined,
     email: string,
-    tag_id: number
+    tagId: number
 }
 
 // Creation Attribute
@@ -26,13 +26,13 @@ export interface CompanyInstance extends Model<CompanyAttributes, CompanyCreatio
 class Company extends Model<CompanyAttributes, CompanyCreationAttributes> implements CompanyAttributes {
     declare id: number;
     declare name: string;
-    declare address_id: number;
+    declare addressId: number;
     declare taxID?: string | null | undefined;
     declare phone?: string | null | undefined;
     declare mobile?: string | null | undefined;
     declare website?: string | null | undefined;
     declare email: string;
-    declare tag_id: number;
+    declare tagId: number;
     
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
@@ -48,7 +48,7 @@ Company.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    address_id: {
+    addressId: {
         type: DataTypes.INTEGER,
         references: {
             model: Address,
@@ -71,7 +71,7 @@ Company.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    tag_id: {
+    tagId: {
         type: DataTypes.INTEGER,
         references: {
             model: {
