@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 
 const AddressType = sequelize.define('address_types', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },

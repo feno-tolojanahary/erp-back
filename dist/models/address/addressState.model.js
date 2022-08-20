@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const __1 = __importDefault(require(".."));
-const user_model_1 = __importDefault(require("../users/user.model"));
+const user_1 = __importDefault(require("../users/user"));
 // Class entity
 class AddressState extends sequelize_1.Model {
 }
 AddressState.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -28,15 +28,16 @@ AddressState.init({
         allowNull: false
     },
     companyId: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 1
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: user_model_1.default,
+            model: user_1.default,
             key: 'id'
-        }
+        },
+        defaultValue: 1
     }
 }, {
     sequelize: __1.default,

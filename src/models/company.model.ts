@@ -1,5 +1,6 @@
 import { Model, Optional, DataTypes } from "sequelize";
 import Address from "./address/address.model";
+import ContactModel from "./contact.model";
 import sequelize from ".";
 
 // Entity
@@ -39,7 +40,7 @@ class Company extends Model<CompanyAttributes, CompanyCreationAttributes> implem
 
 Company.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -85,5 +86,8 @@ Company.init({
     tableName: 'companies',
     sequelize
 });
+
+Company.hasMany(ContactModel);
+ContactModel.belongsTo(Company);
 
 export default Company;

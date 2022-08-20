@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "..";
-import User from '../users/user.model';
+import User from '../users/user';
 
 // Entity
 export interface AddressStateAttributes {
@@ -32,7 +32,7 @@ class AddressState extends Model<AddressStateAttributes, AddressStateCreationAtt
 }
 AddressState.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -49,7 +49,7 @@ AddressState.init({
         allowNull: false
     },
     companyId: { 
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         defaultValue: 1
     },
     created_by: {
@@ -57,7 +57,8 @@ AddressState.init({
         references: {
             model: User,
             key: 'id'
-        }
+        },
+        defaultValue: 1
     }
 }, {
     sequelize,

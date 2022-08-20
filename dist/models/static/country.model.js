@@ -7,7 +7,7 @@ const index_1 = __importDefault(require("../index"));
 const sequelize_1 = require("sequelize");
 const Country = index_1.default.define('address_country', {
     id: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },

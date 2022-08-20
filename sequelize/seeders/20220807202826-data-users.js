@@ -14,6 +14,7 @@ module.exports = {
     await queryInterface.bulkInsert('users', [
       {
         name: "Admin",
+        email: "admin@gmail.com",
         createdAt: new Date(),
         updatedAt: new Date()
       },

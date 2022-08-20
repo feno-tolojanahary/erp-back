@@ -7,9 +7,7 @@ const address_route_1 = __importDefault(require("./address/address.route"));
 const addressState_route_1 = __importDefault(require("./address/addressState.route"));
 const company_route_1 = __importDefault(require("./company.route"));
 const static_route_1 = __importDefault(require("./static.route"));
-const user_route_1 = __importDefault(require("./user.route"));
 const ROUTES_CLASS = [
-    user_route_1.default,
     address_route_1.default,
     addressState_route_1.default,
     company_route_1.default

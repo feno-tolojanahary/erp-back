@@ -5,13 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const address_model_1 = __importDefault(require("./address/address.model"));
+const contact_model_1 = __importDefault(require("./contact.model"));
 const _1 = __importDefault(require("."));
 // Class entity
 class Company extends sequelize_1.Model {
 }
 Company.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -56,4 +57,6 @@ Company.init({
     tableName: 'companies',
     sequelize: _1.default
 });
+Company.hasMany(contact_model_1.default);
+contact_model_1.default.belongsTo(Company);
 exports.default = Company;

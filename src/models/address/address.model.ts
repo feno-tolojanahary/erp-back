@@ -35,7 +35,7 @@ class Address extends Model <AddressAttributes, AddressCreationAttributes> imple
 
 Address.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },

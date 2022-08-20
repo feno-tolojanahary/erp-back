@@ -3,19 +3,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = __importDefault(require("../index"));
+exports.UserModel = void 0;
 const sequelize_1 = require("sequelize");
-const AddressType = index_1.default.define('address_types', {
+const _1 = __importDefault(require("../."));
+class UserModel extends sequelize_1.Model {
+}
+exports.UserModel = UserModel;
+UserModel.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     name: {
-        type: sequelize_1.DataTypes.STRING
-    }
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
+    },
+    email: sequelize_1.DataTypes.STRING
 }, {
-    freezeTableName: true,
-    timestamps: false
+    tableName: 'users',
+    sequelize: _1.default
 });
-exports.default = AddressType;
+exports.default = UserModel;

@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 
 const Tag = sequelize.define('tags', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },

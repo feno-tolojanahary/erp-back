@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 
 const UserTitle = sequelize.define('user_titles', {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },

@@ -1,6 +1,6 @@
 import { DataTypes, Model,  Optional } from "sequelize";
 import sequelize from ".";
-import { Contact } from "@interfaces/contact.interface"
+import { Contact } from "@interfaces/contact.interface";
 
 export type ContactCreationAttributes = Optional<Contact, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
 
@@ -23,7 +23,7 @@ export class ContactModel extends Model<Contact, ContactCreationAttributes> impl
 
 ContactModel.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -37,7 +37,7 @@ ContactModel.init({
     email: DataTypes.STRING,
     website: DataTypes.STRING,
     companyId: { 
-        type: DataTypes.INTEGER.UNSIGNED, 
+        type: DataTypes.INTEGER, 
         defaultValue: 1 
     },
     

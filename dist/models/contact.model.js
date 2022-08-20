@@ -11,7 +11,7 @@ class ContactModel extends sequelize_1.Model {
 exports.ContactModel = ContactModel;
 ContactModel.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -25,7 +25,7 @@ ContactModel.init({
     email: sequelize_1.DataTypes.STRING,
     website: sequelize_1.DataTypes.STRING,
     companyId: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 1
     },
     createdAt: sequelize_1.DataTypes.DATE,
