@@ -17,18 +17,21 @@ const contact_dto_1 = require("../dtos/contact.dto");
 const class_validator_1 = require("class-validator");
 const HttpException_1 = require("../exceptions/HttpException");
 const base_controller_1 = __importDefault(require("./base.controller"));
-class UserController extends base_controller_1.default {
+class ContactController extends base_controller_1.default {
     constructor() {
         super(contact_service_1.default);
-        this.createContact = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.service = new contact_service_1.default();
+    }
+    create(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("need to call create base");
                 const data = req.body;
+                console.log("received body: ", data);
                 const validationErros = yield (0, class_validator_1.validate)(new contact_dto_1.CreateContactDto(data), { validationError: { target: false } });
                 if (validationErros.length > 0) {
                     throw new HttpException_1.HttpException(500, JSON.stringify(validationErros));
                 }
-                this.create(req, res, next);
+                // super.create(req, res, next);
             }
             catch (err) {
                 next(err);
@@ -36,4 +39,4 @@ class UserController extends base_controller_1.default {
         });
     }
 }
-exports.default = UserController;
+exports.default = ContactController;

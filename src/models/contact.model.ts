@@ -1,6 +1,7 @@
 import { DataTypes, Model,  Optional } from "sequelize";
 import sequelize from ".";
 import { Contact } from "@interfaces/contact.interface";
+import Address from "./address/address.model";
 
 export type ContactCreationAttributes = Optional<Contact, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
 
@@ -17,6 +18,8 @@ export class ContactModel extends Model<Contact, ContactCreationAttributes> impl
 
     public createdAt!: Date;
     public updatedAt!: Date;
+
+    static Address: any;
 }
 
 
@@ -47,5 +50,9 @@ ContactModel.init({
     tableName: 'contacts',
     sequelize
 })
+
+
+Address.belongsTo(ContactModel, { foreignKey: "addressId" });
+ContactModel.Address = ContactModel.belongsTo(Address, { foreignKey: "entityId" });
 
 export default ContactModel;

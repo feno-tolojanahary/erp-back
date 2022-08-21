@@ -3,11 +3,13 @@ import AddressRoutes from './address/address.route';
 import AddressStateRoutes from './address/addressState.route';
 import CompanyRoutes from './company.route';
 import StaticRoutes from './static.route';
+import ContactRoutes from './contact.route';
 
 const ROUTES_CLASS = [
     AddressRoutes,
     AddressStateRoutes,
-    CompanyRoutes
+    CompanyRoutes,
+    ContactRoutes
 ]
 
 

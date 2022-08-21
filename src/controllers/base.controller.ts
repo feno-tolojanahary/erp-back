@@ -7,9 +7,14 @@ export default abstract class BaseController {
 
     constructor(Service: any) {
         this.service = new Service();
+        this.create = this.create.bind(this);
+        this.getAll = this.getAll.bind(this);
+        this.getByCompany = this.getByCompany.bind(this);
+        this.update = this.update.bind(this);
+        this.destroy = this.destroy.bind(this);
     }
 
-    public getAll = async (req: Request, res: Response, next: NextFunction) => {
+    public async getAll(req: Request, res: Response, next: NextFunction) {
         try {
             const allUsers = await this.service.findAll();
             next({ data: allUsers, message: `Get all list` } as DataResponse);
@@ -18,7 +23,7 @@ export default abstract class BaseController {
         }
     }
 
-    public getByCompany = async (req: Request,                                                                      es: Response, next: NextFunction) => {
+    public async getByCompany(req: Request, res: Response, next: NextFunction) {
         try {
             const allUsers = await this.service.findByCompany(req.params.companyId);
             next({ data: allUsers, message: `Get all list` } as DataResponse);
@@ -27,9 +32,8 @@ export default abstract class BaseController {
         }
     }
 
-    public create = async (req: Request, res: Response, next: NextFunction) => {
+    public async create(req: Request, res: Response, next: NextFunction) {
         try {
-            console.log("calling create base: ", req.body)
             const data = req.body;
             const createdData = await this.service.create(data);
             next({ data: createdData, message: "Data created" } as DataResponse);
@@ -38,7 +42,7 @@ export default abstract class BaseController {
         }
     }
 
-    public update = async (req: Request, res: Response, next: NextFunction) => {
+    public async update(req: Request, res: Response, next: NextFunction) {
         try {
             const id: number = parseInt(req.params.id);
             const data = req.body;
@@ -49,7 +53,7 @@ export default abstract class BaseController {
         }
     }
 
-    public destroy = async (req: Request, res: Response, next: NextFunction) => {
+    public async destroy(req: Request, res: Response, next: NextFunction) {
         try {
             const id: number = parseInt(req.params.id);
             const result = await this.service.delete(id);

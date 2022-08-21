@@ -21,6 +21,16 @@ module.exports = {
       zip: {
           type: Sequelize.DataTypes.STRING
       },
+      typeId: {
+        type: Sequelize.DataTypes.INTEGER,
+        references: {
+            model: {
+              tableName: "address_types",
+              schema: "public"
+            },
+            key: 'id'
+        }
+      },
       stateId: {
           type: Sequelize.DataTypes.INTEGER,
           references: {
@@ -31,15 +41,8 @@ module.exports = {
               key: 'id'
           }
       },
-      countryId: {
-          type: Sequelize.DataTypes.INTEGER,
-          references: {
-              model: {
-                  tableName: 'address_country',
-                  schema: 'public'
-              },
-              key: 'id'
-          }
+      country: {
+        type: Sequelize.DataTypes.STRING
       },
       createdAt: Sequelize.DataTypes.DATE,
       updatedAt: Sequelize.DataTypes.DATE

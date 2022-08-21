@@ -10,9 +10,9 @@ class ContactService extends BaseService<User, CreateContactDto> {
     }
 
     public async create(data: CreateContactDto): Promise<User> {
-        const findUser = await this.Model.findOne({ where: { [Op.or]: [ { email: data.email }, { name: data.name } ]} });
-        if (findUser) {
-            throw new HttpException(400, "User already exists");
+        const findContact = await this.Model.findOne({ where: { [Op.or]: [ { email: data.email }, { name: data.name } ]} });
+        if (findContact) {
+            throw new HttpException(400, "Contact already exists");
         }
         return super.create(data);
     }

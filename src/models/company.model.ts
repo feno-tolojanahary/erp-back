@@ -7,7 +7,6 @@ import sequelize from ".";
 export interface CompanyAttributes {
     id: number,
     name: string,
-    addressId: number,
     taxID?: string | null | undefined,
     phone?: string | null | undefined,
     mobile?: string | null | undefined,
@@ -26,7 +25,6 @@ export interface CompanyInstance extends Model<CompanyAttributes, CompanyCreatio
 class Company extends Model<CompanyAttributes, CompanyCreationAttributes> implements CompanyAttributes {
     declare id: number;
     declare name: string;
-    declare addressId: number;
     declare taxID?: string | null | undefined;
     declare phone?: string | null | undefined;
     declare mobile?: string | null | undefined;
@@ -36,6 +34,9 @@ class Company extends Model<CompanyAttributes, CompanyCreationAttributes> implem
     
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
+
+    static Contacts: any;
+    static Address: any;
 }
 
 Company.init({
@@ -47,13 +48,6 @@ Company.init({
     name: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    addressId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Address,
-            key: 'id'
-        }
     },
     taxID: {
         type: DataTypes.STRING,
@@ -87,7 +81,12 @@ Company.init({
     sequelize
 });
 
-Company.hasMany(ContactModel);
+// Contact's association
+Company.hasMany(ContactModel, { foreignKey: 'companyId' });
 ContactModel.belongsTo(Company);
 
-export default Company;
+// Address's association
+Company.Address = Company.hasOne(Address, { foreignKey: 'entityId' });
+Address.belongsTo(Company);
+
+export default Company; 

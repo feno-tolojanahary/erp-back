@@ -11,7 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 class BaseController {
     constructor(Service) {
-        this.getAll = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.service = new Service();
+        this.create = this.create.bind(this);
+        this.getAll = this.getAll.bind(this);
+        this.getByCompany = this.getByCompany.bind(this);
+        this.update = this.update.bind(this);
+        this.destroy = this.destroy.bind(this);
+    }
+    getAll(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const allUsers = yield this.service.findAll();
                 next({ data: allUsers, message: `Get all list` });
@@ -20,7 +28,9 @@ class BaseController {
                 next(err);
             }
         });
-        this.getByCompany = (req, es, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getByCompany(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const allUsers = yield this.service.findByCompany(req.params.companyId);
                 next({ data: allUsers, message: `Get all list` });
@@ -29,9 +39,10 @@ class BaseController {
                 next(err);
             }
         });
-        this.create = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    create(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("calling create base: ", req.body);
                 const data = req.body;
                 const createdData = yield this.service.create(data);
                 next({ data: createdData, message: "Data created" });
@@ -40,7 +51,9 @@ class BaseController {
                 next(err);
             }
         });
-        this.update = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    update(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = parseInt(req.params.id);
                 const data = req.body;
@@ -51,7 +64,9 @@ class BaseController {
                 next(err);
             }
         });
-        this.destroy = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    destroy(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = parseInt(req.params.id);
                 const result = yield this.service.delete(id);
@@ -61,7 +76,6 @@ class BaseController {
                 next(err);
             }
         });
-        this.service = new Service();
     }
 }
 exports.default = BaseController;

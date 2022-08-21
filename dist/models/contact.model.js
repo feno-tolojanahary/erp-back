@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactModel = void 0;
 const sequelize_1 = require("sequelize");
 const _1 = __importDefault(require("."));
+const address_model_1 = __importDefault(require("./address/address.model"));
 class ContactModel extends sequelize_1.Model {
 }
 exports.ContactModel = ContactModel;
@@ -34,4 +35,6 @@ ContactModel.init({
     tableName: 'contacts',
     sequelize: _1.default
 });
+address_model_1.default.belongsTo(ContactModel, { foreignKey: "addressId" });
+ContactModel.Address = ContactModel.belongsTo(address_model_1.default, { foreignKey: "entityId" });
 exports.default = ContactModel;

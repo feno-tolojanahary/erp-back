@@ -25,9 +25,9 @@ class ContactService extends base_service_1.default {
             create: { get: () => super.create }
         });
         return __awaiter(this, void 0, void 0, function* () {
-            const findUser = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: data.email }, { name: data.name }] } });
-            if (findUser) {
-                throw new HttpException_1.HttpException(400, "User already exists");
+            const findContact = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: data.email }, { name: data.name }] } });
+            if (findContact) {
+                throw new HttpException_1.HttpException(400, "Contact already exists");
             }
             return _super.create.call(this, data);
         });

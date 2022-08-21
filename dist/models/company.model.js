@@ -20,13 +20,6 @@ Company.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    addressId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        references: {
-            model: address_model_1.default,
-            key: 'id'
-        }
-    },
     taxID: {
         type: sequelize_1.DataTypes.STRING,
     },
@@ -57,6 +50,10 @@ Company.init({
     tableName: 'companies',
     sequelize: _1.default
 });
-Company.hasMany(contact_model_1.default);
+// Contact's association
+Company.hasMany(contact_model_1.default, { foreignKey: 'companyId' });
 contact_model_1.default.belongsTo(Company);
+// Address's association
+Company.Address = Company.hasOne(address_model_1.default, { foreignKey: 'entityId' });
+address_model_1.default.belongsTo(Company);
 exports.default = Company;

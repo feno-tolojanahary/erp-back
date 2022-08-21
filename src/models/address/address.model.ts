@@ -1,5 +1,7 @@
 import { Optional, Model, DataTypes } from "sequelize";
 import AddressState from "./addressState.model";
+import Country from "@models/static/country.model";
+import AddressType from "@models/static/addressType.model";
 import sequelize from "..";
 
 // Entity
@@ -9,8 +11,9 @@ export interface AddressAttributes {
     street2?: string,
     city: string,
     zip?: string,
+    typeId: number,
     stateId: number,
-    countryId: number
+    country: number
 }
 
 // Creation attribute
@@ -26,11 +29,16 @@ class Address extends Model <AddressAttributes, AddressCreationAttributes> imple
     declare street2: string;
     declare city: string;
     declare zip: string;
+    declare typeId: number;
     declare stateId: number;
-    declare countryId: number;
+    declare country: number;
 
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
+
+    static Companies: any;
+    static AddressState: any;
+    static Country: any;
 }
 
 Address.init({
@@ -52,6 +60,13 @@ Address.init({
     zip: {
         type: DataTypes.STRING
     },
+    typeId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: AddressType,
+            key: 'id'
+        }
+    },
     stateId: {
         type: DataTypes.INTEGER,
         references: {
@@ -59,19 +74,20 @@ Address.init({
             key: 'id'
         }
     },
-    countryId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: {
-                tableName: 'address_country',
-                schema: 'public'
-            },
-            key: 'id'
-        }
+    country: {
+        type: DataTypes.STRING
     }
 }, {
     sequelize,
     tableName: 'address'
 })
+
+// State's relation
+AddressState.hasMany(Address, { foreignKey: 'stateId' });
+Address.AddressState = Address.belongsTo(AddressState);
+
+// Country's relation
+Country.hasMany(Address, { foreignKey: 'countryId' });
+Address.Country = Address.belongsTo(Country);
 
 export default Address;
