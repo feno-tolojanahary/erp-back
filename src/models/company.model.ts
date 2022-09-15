@@ -1,7 +1,7 @@
 import { Model, Optional, DataTypes } from "sequelize";
 import Address from "./address/address.model";
 import ContactModel from "./contact.model";
-import sequelize from ".";
+import sequelize from "./sequelize";
 
 // Entity
 export interface CompanyAttributes {
@@ -11,8 +11,11 @@ export interface CompanyAttributes {
     phone?: string | null | undefined,
     mobile?: string | null | undefined,
     website?: string | null | undefined,
+    addressId?: number,
     email: string,
-    tagId: number
+    tagId: number,
+
+    address?: any
 }
 
 // Creation Attribute
@@ -31,9 +34,12 @@ class Company extends Model<CompanyAttributes, CompanyCreationAttributes> implem
     declare website?: string | null | undefined;
     declare email: string;
     declare tagId: number;
-    
+    declare addressId?: number;
+
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
+
+    declare address?: number;
 
     static Contacts: any;
     static Address: any;
@@ -65,6 +71,14 @@ Company.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    addressId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Address,
+            key: 'id'
+            
+        }
+    },
     tagId: {
         type: DataTypes.INTEGER,
         references: {
@@ -82,11 +96,12 @@ Company.init({
 });
 
 // Contact's association
-Company.hasMany(ContactModel, { foreignKey: 'companyId' });
-ContactModel.belongsTo(Company);
+// Company.hasMany(ContactModel, { foreignKey: 'companyId' });
+// ContactModel.belongsTo(Company);
 
 // Address's association
-Company.Address = Company.hasOne(Address, { foreignKey: 'entityId' });
-Address.belongsTo(Company);
+
+// Address.hasOne(Company);
+// Company.Address = Company.belongsTo(Address, { as: "address" });
 
 export default Company; 

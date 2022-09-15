@@ -1,24 +1,26 @@
-import dotenv from 'dotenv';
-import { Sequelize } from 'sequelize';
+import Company from "./company.model";
+import Contact from "./contact.model";
+import Address from "./address/address.model";
+import AddressEntity from './address/addressEntity.model';
+import AddressState from './address/addressState.model';
+import User from './users/user';
+import UserTitle from './users/userTitle';
 
-dotenv.config();
+Company.hasMany(Contact, { foreignKey: 'companyId' });
+Contact.Company = Contact.belongsTo(Company, { foreignKey: 'companyId' });
 
-const pgUser: string | undefined = process.env.PG_USER;
-const pgPwd: string | undefined= process.env.PG_PASSWORD;
-const pgDbName: string | undefined = process.env.PG_DB_NAME;
-const pgHost: string | undefined = process.env.PG_HOST;
-const pgPort: string | undefined = process.env.PG_PORT;
+Contact.Address = Contact.hasOne(Address, { as: "address", foreignKey: "targetId" });
+Address.belongsTo(Contact, { foreignKey: "targetId" });
 
-const sequelize = new Sequelize(`postgres://${pgUser}:${pgPwd}@${pgHost}:${pgPort}/${pgDbName}`);
-console.log("Models is executed");
-(async () => {
-    try {
-      await sequelize.authenticate();
-      console.log("Successfuly connecting to database")
-      // await sequelize.sync({ alter: true })
-    } catch(err) {
-      console.error("Unable connecting to DB: ", err);
-    }
-  })()
+Company.Address = Company.hasOne(Address, { as: "address", foreignKey: "targetId" });
+Address.belongsTo(Company, { as: "address", foreignKey: "targetId" });
 
-export default sequelize;
+export {
+    Company,
+    Contact,
+    Address,
+    AddressEntity,
+    AddressState,
+    User,
+    UserTitle
+}

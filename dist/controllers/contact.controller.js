@@ -21,17 +21,35 @@ class ContactController extends base_controller_1.default {
     constructor() {
         super(contact_service_1.default);
         this.service = new contact_service_1.default();
+        this.findById = this.findById.bind(this);
     }
     create(req, res, next) {
+        const _super = Object.create(null, {
+            create: { get: () => super.create }
+        });
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const data = req.body;
-                console.log("received body: ", data);
                 const validationErros = yield (0, class_validator_1.validate)(new contact_dto_1.CreateContactDto(data), { validationError: { target: false } });
                 if (validationErros.length > 0) {
                     throw new HttpException_1.HttpException(500, JSON.stringify(validationErros));
                 }
-                // super.create(req, res, next);
+                _super.create.call(this, req, res, next);
+            }
+            catch (err) {
+                next(err);
+            }
+        });
+    }
+    findById(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                if (!id) {
+                    throw new Error("No param 'id' given");
+                }
+                const contact = yield this.service.findById(+id);
+                next({ data: contact, message: "Get conctact by id" });
             }
             catch (err) {
                 next(err);

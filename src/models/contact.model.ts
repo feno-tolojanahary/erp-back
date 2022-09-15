@@ -1,30 +1,51 @@
 import { DataTypes, Model,  Optional } from "sequelize";
-import sequelize from ".";
-import { Contact } from "@interfaces/contact.interface";
+import sequelize from "./sequelize";
 import Address from "./address/address.model";
+import User from './users/user'
+import Company from "./company.model";
 
-export type ContactCreationAttributes = Optional<Contact, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
+export interface ContactAttributes {
+    id: number;
+    name: string;
 
-export class ContactModel extends Model<Contact, ContactCreationAttributes> implements Contact {
-    public id!: number;
-    public name!: string;
+    jobPosition: string | null;
+    phone: string | null;
+    mobile: string | null;
+    email: string | null;
+    website: string | null;
+    companyId: number | null;
+    addressId?: number | null;
+    createdBy: number;
+    
+    createdAt?: Date;
+    updatedAt?: Date;
+}
 
-    public jobPosition!: string | null;
-    public phone!: string | null;
-    public mobile!: string | null;
-    public email!: string | null;
-    public website!: string | null;
-    public companyId!: number | null;
+export type ContactCreationAttributes = Optional<ContactAttributes, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
 
-    public createdAt!: Date;
-    public updatedAt!: Date;
+export class Contact extends Model<ContactAttributes, ContactCreationAttributes> implements ContactAttributes {
+    declare id: number;
+    declare name: string;
+
+    declare jobPosition: string | null;
+    declare phone: string | null;
+    declare mobile: string | null;
+    declare email: string | null;
+    declare website: string | null;
+    declare companyId: number | null;
+    declare addressId?: number;
+    declare createdBy: number;
+
+    declare readonly createdAt?: Date;
+    declare readonly updatedAt?: Date;
 
     static Address: any;
+    static Company: any;
 }
 
 
 
-ContactModel.init({
+Contact.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -41,9 +62,26 @@ ContactModel.init({
     website: DataTypes.STRING,
     companyId: { 
         type: DataTypes.INTEGER, 
-        defaultValue: 1 
+        references: {
+            model: Company,
+            key: 'id'
+        }
     },
-    
+    addressId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Address,
+            key: 'id'
+            
+        }
+    },
+    createdBy: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: 'id'
+        }
+    },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
 }, {
@@ -52,7 +90,7 @@ ContactModel.init({
 })
 
 
-Address.belongsTo(ContactModel, { foreignKey: "addressId" });
-ContactModel.Address = ContactModel.belongsTo(Address, { foreignKey: "entityId" });
 
-export default ContactModel;
+
+
+export default Contact;

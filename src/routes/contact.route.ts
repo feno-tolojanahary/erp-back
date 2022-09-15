@@ -9,7 +9,10 @@ class ContactRoutes extends BaseRoutes {
         super(ContactController);
     }
 
-    initializeRoutes(): void {}
+    initializeRoutes(): void {
+        
+        this.router.get('/getById/:id', this.controller.findById);
+    }
     
 }
 

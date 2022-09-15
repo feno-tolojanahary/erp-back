@@ -5,8 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const address_model_1 = __importDefault(require("./address/address.model"));
-const contact_model_1 = __importDefault(require("./contact.model"));
-const _1 = __importDefault(require("."));
+const sequelize_2 = __importDefault(require("./sequelize"));
 // Class entity
 class Company extends sequelize_1.Model {
 }
@@ -36,6 +35,13 @@ Company.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
+    addressId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: address_model_1.default,
+            key: 'id'
+        }
+    },
     tagId: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
@@ -48,12 +54,12 @@ Company.init({
     }
 }, {
     tableName: 'companies',
-    sequelize: _1.default
+    sequelize: sequelize_2.default
 });
 // Contact's association
-Company.hasMany(contact_model_1.default, { foreignKey: 'companyId' });
-contact_model_1.default.belongsTo(Company);
+// Company.hasMany(ContactModel, { foreignKey: 'companyId' });
+// ContactModel.belongsTo(Company);
 // Address's association
-Company.Address = Company.hasOne(address_model_1.default, { foreignKey: 'entityId' });
-address_model_1.default.belongsTo(Company);
+// Address.hasOne(Company);
+// Company.Address = Company.belongsTo(Address, { as: "address" });
 exports.default = Company;

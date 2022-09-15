@@ -4,7 +4,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('address', { 
       id: {
-          type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+          type: Sequelize.DataTypes.INTEGER,
           autoIncrement: true,
           primaryKey: true
       },
@@ -20,6 +20,12 @@ module.exports = {
       },
       zip: {
           type: Sequelize.DataTypes.STRING
+      },
+      targetId: {
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      targetType: {
+        type: Sequelize.DataTypes.STRING
       },
       typeId: {
         type: Sequelize.DataTypes.INTEGER,
@@ -43,6 +49,10 @@ module.exports = {
       },
       country: {
         type: Sequelize.DataTypes.STRING
+      },
+      addressId: {
+        type: Sequelize.DataTypes.INTEGER,
+        defaultValue: 1
       },
       createdAt: Sequelize.DataTypes.DATE,
       updatedAt: Sequelize.DataTypes.DATE

@@ -7,7 +7,7 @@ export default abstract class BaseService<ModelType extends Model, CreateModelDt
         this.Model = model;
     }
 
-    public async create(data: CreateModelDto): Promise<ModelType> {
+    public create(data: CreateModelDto): Promise<ModelType> {
         const createdData: Promise<ModelType> = this.Model.create(data);
         return createdData;
     }

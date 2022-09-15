@@ -1,5 +1,5 @@
 import { DataTypes, Model,  Optional } from "sequelize";
-import sequelize from "../.";
+import sequelize from "../sequelize";
 import { User } from "@interfaces/user.interface"
 
 export type UserCreationAttributes = Optional<User, 'email'>

@@ -10,7 +10,9 @@ class ContactRoutes extends base_route_1.default {
     constructor() {
         super(contact_controller_1.default);
     }
-    initializeRoutes() { }
+    initializeRoutes() {
+        this.router.get('/getById/:id', this.controller.findById);
+    }
 }
 ContactRoutes.path = "contacts";
 exports.default = ContactRoutes;

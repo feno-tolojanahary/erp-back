@@ -28,6 +28,17 @@ module.exports = {
           type: Sequelize.DataTypes.STRING,
           allowNull: false
       },
+      addressId: {
+        type: Sequelize.DataTypes.INTEGER,
+        references: {
+            model: {
+                tableName: 'address',
+                schema: 'public'
+            },
+            key: 'id'
+            
+        }
+      },
       tagId: {
           type: Sequelize.DataTypes.INTEGER,
           references: {

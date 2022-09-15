@@ -3,14 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContactModel = void 0;
+exports.Contact = void 0;
 const sequelize_1 = require("sequelize");
-const _1 = __importDefault(require("."));
+const sequelize_2 = __importDefault(require("./sequelize"));
 const address_model_1 = __importDefault(require("./address/address.model"));
-class ContactModel extends sequelize_1.Model {
+const user_1 = __importDefault(require("./users/user"));
+const company_model_1 = __importDefault(require("./company.model"));
+class Contact extends sequelize_1.Model {
 }
-exports.ContactModel = ContactModel;
-ContactModel.init({
+exports.Contact = Contact;
+Contact.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
@@ -27,14 +29,29 @@ ContactModel.init({
     website: sequelize_1.DataTypes.STRING,
     companyId: {
         type: sequelize_1.DataTypes.INTEGER,
-        defaultValue: 1
+        references: {
+            model: company_model_1.default,
+            key: 'id'
+        }
+    },
+    addressId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: address_model_1.default,
+            key: 'id'
+        }
+    },
+    createdBy: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: user_1.default,
+            key: 'id'
+        }
     },
     createdAt: sequelize_1.DataTypes.DATE,
     updatedAt: sequelize_1.DataTypes.DATE
 }, {
     tableName: 'contacts',
-    sequelize: _1.default
+    sequelize: sequelize_2.default
 });
-address_model_1.default.belongsTo(ContactModel, { foreignKey: "addressId" });
-ContactModel.Address = ContactModel.belongsTo(address_model_1.default, { foreignKey: "entityId" });
-exports.default = ContactModel;
+exports.default = Contact;

@@ -7,6 +7,7 @@ class BaseRoutes {
         this.router = Router();
         this.controller = new ControllerClass();
         this.initializeDefaultRoutes();
+        this.initializeRoutes();
     }
     initializeDefaultRoutes() {
         this.router.get('/', this.controller.getAll);

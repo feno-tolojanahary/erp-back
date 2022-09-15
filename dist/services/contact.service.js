@@ -13,23 +13,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpException_1 = require("../exceptions/HttpException");
-const contact_model_1 = __importDefault(require("../models/contact.model"));
 const sequelize_1 = require("sequelize");
 const base_service_1 = __importDefault(require("./base.service"));
+const index_1 = require("../models/index");
 class ContactService extends base_service_1.default {
     constructor() {
-        super(contact_model_1.default);
+        super(index_1.Contact);
     }
     create(data) {
-        const _super = Object.create(null, {
-            create: { get: () => super.create }
-        });
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("received data: ", data);
             const findContact = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: data.email }, { name: data.name }] } });
             if (findContact) {
                 throw new HttpException_1.HttpException(400, "Contact already exists");
             }
-            return _super.create.call(this, data);
+            const createdContact = yield this.Model.create(data, {
+                include: ["companies"]
+            });
+            return createdContact;
+        });
+    }
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.Model.findAll({
+                where: {
+                    createdBy: 1
+                },
+                include: [index_1.Contact.Company, index_1.Contact.Address]
+            });
+        });
+    }
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.Model.findOne({
+                where: { id },
+                include: [index_1.Contact.Company, index_1.Contact.Address]
+            });
         });
     }
 }

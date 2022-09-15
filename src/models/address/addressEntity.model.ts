@@ -1,4 +1,4 @@
-import sequelize from '@models/index';
+import sequelize from '@models/sequelize';
 import { DataTypes } from 'sequelize';
 import Address from '@models/address/address.model';
 

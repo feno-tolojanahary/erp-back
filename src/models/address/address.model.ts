@@ -2,7 +2,7 @@ import { Optional, Model, DataTypes } from "sequelize";
 import AddressState from "./addressState.model";
 import Country from "@models/static/country.model";
 import AddressType from "@models/static/addressType.model";
-import sequelize from "..";
+import sequelize from "../sequelize";
 
 // Entity
 export interface AddressAttributes {
@@ -13,11 +13,14 @@ export interface AddressAttributes {
     zip?: string,
     typeId: number,
     stateId: number,
-    country: number
+    country: string,
+    targetId: number,
+    targetType: string
 }
 
 // Creation attribute
 interface AddressCreationAttributes extends Optional<AddressAttributes, 'id' | 'street2' | 'zip'>{}
+// interface AddressCreationAttributes extends Optional<AddressAttributes, 'id'>{}
 
 // Instance
 export interface AddressInstance extends Model<AddressAttributes, AddressCreationAttributes>, AddressAttributes {}
@@ -31,14 +34,13 @@ class Address extends Model <AddressAttributes, AddressCreationAttributes> imple
     declare zip: string;
     declare typeId: number;
     declare stateId: number;
-    declare country: number;
+    declare country: string;
+    declare targetId: number;
+    declare targetType: string;
 
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
 
-    static Companies: any;
-    static AddressState: any;
-    static Country: any;
 }
 
 Address.init({
@@ -74,6 +76,12 @@ Address.init({
             key: 'id'
         }
     },
+    targetId: {
+        type: DataTypes.INTEGER
+    },
+    targetType: {
+        type: DataTypes.STRING
+    },
     country: {
         type: DataTypes.STRING
     }
@@ -83,11 +91,7 @@ Address.init({
 })
 
 // State's relation
-AddressState.hasMany(Address, { foreignKey: 'stateId' });
-Address.AddressState = Address.belongsTo(AddressState);
-
-// Country's relation
-Country.hasMany(Address, { foreignKey: 'countryId' });
-Address.Country = Address.belongsTo(Country);
+// AddressState.hasMany(Address, { foreignKey: 'stateId' });
+// Address.AddressState = Address.belongsTo(AddressState, { foreignKey: 'stateId' });
 
 export default Address;

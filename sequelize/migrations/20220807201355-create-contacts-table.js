@@ -25,7 +25,37 @@ module.exports = {
         website: Sequelize.DataTypes.STRING,
         companyId: { 
           type: Sequelize.DataTypes.INTEGER.UNSIGNED,
-          defaultValue: 1
+          references: {
+            model: {
+                tableName: 'companies',
+                schema: 'public'
+            },
+            key: 'id'
+            
+          }
+        },
+        addressId: {
+          type: Sequelize.DataTypes.INTEGER,
+          references: {
+              model: {
+                  tableName: 'address',
+                  schema: 'public'
+              },
+              key: 'id'
+              
+          }
+        },
+        createdBy: {
+          type: Sequelize.DataTypes.INTEGER,
+          defaultValue: 1,
+          references: {
+            model: {
+                tableName: 'users',
+                schema: 'public'
+            },
+            key: 'id'
+            
+        }
         },
         createdAt: Sequelize.DataTypes.DATE,
         updatedAt: Sequelize.DataTypes.DATE

@@ -1,4 +1,4 @@
-import sequelize from '@models/index';
+import sequelize from '@models/sequelize';
 import { DataTypes } from 'sequelize';
 
 const UserTitle = sequelize.define('user_titles', {

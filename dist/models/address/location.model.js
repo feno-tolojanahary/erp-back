@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const addressState_model_1 = __importDefault(require("./addressState.model"));
 const addressType_model_1 = __importDefault(require("../static/addressType.model"));
-const sequelize_2 = __importDefault(require("../sequelize"));
+const __1 = __importDefault(require(".."));
 // Class entity
-class Address extends sequelize_1.Model {
+class Location extends sequelize_1.Model {
 }
-Address.init({
+Location.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
@@ -53,10 +53,10 @@ Address.init({
         type: sequelize_1.DataTypes.STRING
     }
 }, {
-    sequelize: sequelize_2.default,
-    tableName: 'address'
+    sequelize: __1.default,
+    tableName: 'location'
 });
 // State's relation
-// AddressState.hasMany(Address, { foreignKey: 'stateId' });
-// Address.AddressState = Address.belongsTo(AddressState, { foreignKey: 'stateId' });
-exports.default = Address;
+// AddressState.hasMany(Location, { foreignKey: 'stateId' });
+// Location.AddressState = Location.belongsTo(AddressState, { foreignKey: 'stateId' });
+exports.default = Location;

@@ -9,6 +9,7 @@ abstract class BaseRoutes {
     constructor(ControllerClass: any) {
         this.controller = new ControllerClass();
         this.initializeDefaultRoutes();
+        this.initializeRoutes();
     }
 
     initializeDefaultRoutes() {

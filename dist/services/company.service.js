@@ -12,18 +12,53 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const company_model_1 = __importDefault(require("../models/company.model"));
+const index_1 = require("../models/index");
 const base_service_1 = __importDefault(require("./base.service"));
 class CompanyService extends base_service_1.default {
     constructor() {
-        super(company_model_1.default);
+        super(index_1.Company);
     }
     create(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            console.log("service data: ", data);
-            return this.Model.create(data, {}, {
-                include: [company_model_1.default.Address]
-            });
+        return new Promise((resolve, reject) => {
+            (() => __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const createdCompany = yield this.Model.create(data, {
+                        include: [index_1.Company.Address]
+                    });
+                    // if (createdCompany.id) {
+                    //     try {
+                    //         const address = { ...data.address, targetId: createdCompany.id, targetType: "companies" }
+                    //         await Address.create(address);
+                    //     } catch(err) {
+                    //         console.log("Error when creating company address: ", err);
+                    //     }
+                    // }
+                    // await Address.create({
+                    //     typeId: 3,
+                    //     street: "street1",
+                    //     street2: "street2",
+                    //     city: "the city",
+                    //     stateId: 1,
+                    //     zip: "The zip code",
+                    //     country: "The country",
+                    //     targetId: 6,
+                    //     targetType: "companies"
+                    // });
+                    // await AddressState.create({
+                    //     companyId: 1,
+                    //     country: "France",
+                    //     createdBy: 1,
+                    //     stateCode: "110",
+                    //     stateName: "Antsirabe",
+                    // })
+                    // resolve({} as Company);
+                    resolve(createdCompany);
+                }
+                catch (err) {
+                    console.log("Error when creating company: ", err);
+                    reject(err);
+                }
+            }))();
         });
     }
 }

@@ -14,10 +14,8 @@ class BaseService {
         this.Model = model;
     }
     create(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const createdData = this.Model.create(data);
-            return createdData;
-        });
+        const createdData = this.Model.create(data);
+        return createdData;
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
