@@ -14,7 +14,7 @@ export interface AddressAttributes {
     typeId: number,
     stateId: number,
     country: string,
-    targetId: number,
+    targetId: number | undefined,
     targetType: string
 }
 

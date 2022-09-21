@@ -22,13 +22,12 @@ class ContactService extends base_service_1.default {
     }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("received data: ", data);
             const findContact = yield this.Model.findOne({ where: { [sequelize_1.Op.or]: [{ email: data.email }, { name: data.name }] } });
             if (findContact) {
                 throw new HttpException_1.HttpException(400, "Contact already exists");
             }
             const createdContact = yield this.Model.create(data, {
-                include: ["companies"]
+                include: [index_1.Contact.Company, index_1.Contact.Address]
             });
             return createdContact;
         });
@@ -48,6 +47,32 @@ class ContactService extends base_service_1.default {
             return this.Model.findOne({
                 where: { id },
                 include: [index_1.Contact.Company, index_1.Contact.Address]
+            });
+        });
+    }
+    update(data, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                (() => __awaiter(this, void 0, void 0, function* () {
+                    var _a;
+                    const contactPromiseUpdate = yield this.Model.update(data, { where: { id } });
+                    let addressPromiseUpdate = null;
+                    if ((_a = data === null || data === void 0 ? void 0 : data.address) === null || _a === void 0 ? void 0 : _a.id) {
+                        const { id } = data.address;
+                        addressPromiseUpdate = yield index_1.Address.update(data.address, { where: { id } });
+                    }
+                    else if (data === null || data === void 0 ? void 0 : data.address) {
+                        data.address["targetId"] = id;
+                        addressPromiseUpdate = yield index_1.Address.create(data.address);
+                    }
+                    try {
+                        const results = yield Promise.all([contactPromiseUpdate, addressPromiseUpdate]);
+                        resolve(results[0]);
+                    }
+                    catch (err) {
+                        reject(err);
+                    }
+                }))();
             });
         });
     }

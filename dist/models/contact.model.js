@@ -9,6 +9,8 @@ const sequelize_2 = __importDefault(require("./sequelize"));
 const address_model_1 = __importDefault(require("./address/address.model"));
 const user_1 = __importDefault(require("./users/user"));
 const company_model_1 = __importDefault(require("./company.model"));
+const userTitle_1 = __importDefault(require("./users/userTitle"));
+const tag_model_1 = __importDefault(require("./static/tag.model"));
 class Contact extends sequelize_1.Model {
 }
 exports.Contact = Contact;
@@ -38,6 +40,20 @@ Contact.init({
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: address_model_1.default,
+            key: 'id'
+        }
+    },
+    titleId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: userTitle_1.default,
+            key: 'id'
+        }
+    },
+    tagId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: tag_model_1.default,
             key: 'id'
         }
     },

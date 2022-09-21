@@ -45,6 +45,28 @@ module.exports = {
               
           }
         },
+        tagId: {
+          type: Sequelize.DataTypes.INTEGER,
+          references: {
+              model: {
+                  tableName: 'tags',
+                  schema: 'public'
+              },
+              key: 'id'
+              
+          }
+        },
+        titleId: {
+          type: Sequelize.DataTypes.INTEGER,
+          references: {
+              model: {
+                  tableName: 'user_titles',
+                  schema: 'public'
+              },
+              key: 'id'
+              
+          }
+        },
         createdBy: {
           type: Sequelize.DataTypes.INTEGER,
           defaultValue: 1,

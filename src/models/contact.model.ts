@@ -1,8 +1,10 @@
 import { DataTypes, Model,  Optional } from "sequelize";
 import sequelize from "./sequelize";
-import Address from "./address/address.model";
+import Address, { AddressAttributes } from "./address/address.model";
 import User from './users/user'
 import Company from "./company.model";
+import Title from './users/userTitle';
+import Tag from './static/tag.model';
 
 export interface ContactAttributes {
     id: number;
@@ -15,13 +17,17 @@ export interface ContactAttributes {
     website: string | null;
     companyId: number | null;
     addressId?: number | null;
+    titleId?: number | null;
+    tagId?: number | null;
     createdBy: number;
+
+    address?: AddressAttributes;
     
     createdAt?: Date;
     updatedAt?: Date;
 }
 
-export type ContactCreationAttributes = Optional<ContactAttributes, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId'>
+export type ContactCreationAttributes = Optional<ContactAttributes, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId' | 'titleId' | 'tagId'>
 
 export class Contact extends Model<ContactAttributes, ContactCreationAttributes> implements ContactAttributes {
     declare id: number;
@@ -71,6 +77,22 @@ Contact.init({
         type: DataTypes.INTEGER,
         references: {
             model: Address,
+            key: 'id'
+            
+        }
+    },
+    titleId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Title,
+            key: 'id'
+            
+        }
+    },
+    tagId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Tag,
             key: 'id'
             
         }
