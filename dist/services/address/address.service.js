@@ -1,13 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const base_service_1 = __importDefault(require("../base.service"));
-const address_model_1 = __importDefault(require("../../models/address/address.model"));
-class AddressService extends base_service_1.default {
-    constructor() {
-        super(address_model_1.default);
-    }
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _baseService = _interopRequireDefault(require("../base.service"));
+const _addressModel = _interopRequireDefault(require("../../models/address/address.model"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
-exports.default = AddressService;
+let AddressService = class AddressService extends _baseService.default {
+    constructor(){
+        super(_addressModel.default);
+    }
+};
+const _default = AddressService;
+
+//# sourceMappingURL=address.service.js.map

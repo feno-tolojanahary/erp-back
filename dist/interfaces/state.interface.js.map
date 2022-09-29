@@ -1,1 +1,1 @@
-{"version":3,"file":"state.interface.js","sourceRoot":"","sources":["../../src/interfaces/state.interface.ts"],"names":[],"mappings":""}
+{"version":3,"sources":["../../src/interfaces/state.interface.ts"],"sourcesContent":["\r\nexport default interface State {\r\n    id: number;\r\n    stateName: string | null;\r\n    stateCode: string | null;\r\n    country: string | null;\r\n    createdBy: number;\r\n\r\n    createdAt?: Date;\r\n    updatedAt?: Date;\r\n}"],"names":[],"mappings":"AACA"}

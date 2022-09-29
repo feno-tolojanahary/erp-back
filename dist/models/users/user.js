@@ -1,27 +1,41 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
-const sequelize_1 = require("sequelize");
-const sequelize_2 = __importDefault(require("../sequelize"));
-class UserModel extends sequelize_1.Model {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
 }
-exports.UserModel = UserModel;
+_export(exports, {
+    UserModel: ()=>UserModel,
+    default: ()=>_default
+});
+const _sequelize = require("sequelize");
+const _sequelize1 = _interopRequireDefault(require("../sequelize"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+let UserModel = class UserModel extends _sequelize.Model {
+};
 UserModel.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     name: {
-        type: sequelize_1.DataTypes.STRING,
+        type: _sequelize.DataTypes.STRING,
         allowNull: false
     },
-    email: sequelize_1.DataTypes.STRING
+    email: _sequelize.DataTypes.STRING
 }, {
     tableName: 'users',
-    sequelize: sequelize_2.default
+    sequelize: _sequelize1.default
 });
-exports.default = UserModel;
+const _default = UserModel;
+
+//# sourceMappingURL=user.js.map

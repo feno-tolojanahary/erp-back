@@ -1,23 +1,32 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.bodyNotEmpty = exports.checkParamId = void 0;
-const HttpException_1 = require("../exceptions/HttpException");
-const error_middleware_1 = require("./error.middleware");
-const checkParamId = (req, res, next) => {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    checkParamId: ()=>checkParamId,
+    bodyNotEmpty: ()=>bodyNotEmpty
+});
+const _httpException = require("../exceptions/HttpException");
+const _errorMiddleware = require("./error.middleware");
+const checkParamId = (req, res, next)=>{
     if (!req.params.id) {
-        (0, error_middleware_1.errorHandler)(new HttpException_1.HttpException(400, "no param 'id' provided"), req, res, next);
-    }
-    else {
+        (0, _errorMiddleware.errorHandler)(new _httpException.HttpException(400, "no param 'id' provided"), req, res, next);
+    } else {
         next();
     }
 };
-exports.checkParamId = checkParamId;
-const bodyNotEmpty = (req, res, next) => {
+const bodyNotEmpty = (req, res, next)=>{
     if (!req.body || Object.keys(req.body).length === 0) {
-        (0, error_middleware_1.errorHandler)(new HttpException_1.HttpException(400, "No body provided"), req, res, next);
-    }
-    else {
+        (0, _errorMiddleware.errorHandler)(new _httpException.HttpException(400, "No body provided"), req, res, next);
+    } else {
         next();
     }
 };
-exports.bodyNotEmpty = bodyNotEmpty;
+
+//# sourceMappingURL=checkReqUtil.middleware.js.map

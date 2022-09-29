@@ -1,73 +1,87 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Contact = void 0;
-const sequelize_1 = require("sequelize");
-const sequelize_2 = __importDefault(require("./sequelize"));
-const address_model_1 = __importDefault(require("./address/address.model"));
-const user_1 = __importDefault(require("./users/user"));
-const company_model_1 = __importDefault(require("./company.model"));
-const userTitle_1 = __importDefault(require("./users/userTitle"));
-const tag_model_1 = __importDefault(require("./static/tag.model"));
-class Contact extends sequelize_1.Model {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
 }
-exports.Contact = Contact;
+_export(exports, {
+    Contact: ()=>Contact,
+    default: ()=>_default
+});
+const _sequelize = require("sequelize");
+const _sequelize1 = _interopRequireDefault(require("./sequelize"));
+const _addressModel = _interopRequireDefault(require("./address/address.model"));
+const _user = _interopRequireDefault(require("./users/user"));
+const _companyModel = _interopRequireDefault(require("./company.model"));
+const _userTitle = _interopRequireDefault(require("./users/userTitle"));
+const _tagModel = _interopRequireDefault(require("./static/tag.model"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+let Contact = class Contact extends _sequelize.Model {
+};
 Contact.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     name: {
-        type: sequelize_1.DataTypes.STRING,
+        type: _sequelize.DataTypes.STRING,
         allowNull: false
     },
-    jobPosition: sequelize_1.DataTypes.STRING,
-    phone: sequelize_1.DataTypes.STRING,
-    mobile: sequelize_1.DataTypes.STRING,
-    email: sequelize_1.DataTypes.STRING,
-    website: sequelize_1.DataTypes.STRING,
+    jobPosition: _sequelize.DataTypes.STRING,
+    phone: _sequelize.DataTypes.STRING,
+    mobile: _sequelize.DataTypes.STRING,
+    email: _sequelize.DataTypes.STRING,
+    website: _sequelize.DataTypes.STRING,
     companyId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: company_model_1.default,
+            model: _companyModel.default,
             key: 'id'
         }
     },
     addressId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: address_model_1.default,
+            model: _addressModel.default,
             key: 'id'
         }
     },
     titleId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: userTitle_1.default,
+            model: _userTitle.default,
             key: 'id'
         }
     },
     tagId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: tag_model_1.default,
+            model: _tagModel.default,
             key: 'id'
         }
     },
     createdBy: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: user_1.default,
+            model: _user.default,
             key: 'id'
         }
     },
-    createdAt: sequelize_1.DataTypes.DATE,
-    updatedAt: sequelize_1.DataTypes.DATE
+    createdAt: _sequelize.DataTypes.DATE,
+    updatedAt: _sequelize.DataTypes.DATE
 }, {
     tableName: 'contacts',
-    sequelize: sequelize_2.default
+    sequelize: _sequelize1.default
 });
-exports.default = Contact;
+const _default = Contact;
+
+//# sourceMappingURL=contact.model.js.map

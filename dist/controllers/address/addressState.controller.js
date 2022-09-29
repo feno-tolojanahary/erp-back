@@ -1,13 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const base_controller_1 = __importDefault(require("../base.controller"));
-const addressState_service_1 = __importDefault(require("../../services/address/addressState.service"));
-class AddressStateController extends base_controller_1.default {
-    constructor() {
-        super(addressState_service_1.default);
-    }
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _baseController = _interopRequireDefault(require("../base.controller"));
+const _addressStateService = _interopRequireDefault(require("../../services/address/addressState.service"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
-exports.default = AddressStateController;
+let AddressStateController = class AddressStateController extends _baseController.default {
+    constructor(){
+        super(_addressStateService.default);
+    }
+};
+const _default = AddressStateController;
+
+//# sourceMappingURL=addressState.controller.js.map

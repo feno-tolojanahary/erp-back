@@ -1,60 +1,59 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const contact_service_1 = __importDefault(require("../services/contact.service"));
-const contact_dto_1 = require("../dtos/contact.dto");
-const class_validator_1 = require("class-validator");
-const HttpException_1 = require("../exceptions/HttpException");
-const base_controller_1 = __importDefault(require("./base.controller"));
-class ContactController extends base_controller_1.default {
-    constructor() {
-        super(contact_service_1.default);
-        this.service = new contact_service_1.default();
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _contactService = _interopRequireDefault(require("../services/contact.service"));
+const _contactDto = require("../dtos/contact.dto");
+const _classValidator = require("class-validator");
+const _httpException = require("../exceptions/HttpException");
+const _baseController = _interopRequireDefault(require("./base.controller"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+let ContactController = class ContactController extends _baseController.default {
+    async create(req, res, next) {
+        try {
+            const data = req.body;
+            const validationErros = await (0, _classValidator.validate)(new _contactDto.CreateContactDto(data), {
+                validationError: {
+                    target: false
+                }
+            });
+            if (validationErros.length > 0) {
+                throw new _httpException.HttpException(500, JSON.stringify(validationErros));
+            }
+            super.create(req, res, next);
+        } catch (err) {
+            next(err);
+        }
+    }
+    async findById(req, res, next) {
+        try {
+            const { id  } = req.params;
+            if (!id) {
+                throw new Error("No param 'id' given");
+            }
+            const contact = await this.service.findById(+id);
+            next({
+                data: contact,
+                message: "Get conctact by id"
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+    constructor(){
+        super(_contactService.default);
+        this.service = new _contactService.default();
         this.findById = this.findById.bind(this);
     }
-    create(req, res, next) {
-        const _super = Object.create(null, {
-            create: { get: () => super.create }
-        });
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const data = req.body;
-                const validationErros = yield (0, class_validator_1.validate)(new contact_dto_1.CreateContactDto(data), { validationError: { target: false } });
-                if (validationErros.length > 0) {
-                    throw new HttpException_1.HttpException(500, JSON.stringify(validationErros));
-                }
-                _super.create.call(this, req, res, next);
-            }
-            catch (err) {
-                next(err);
-            }
-        });
-    }
-    findById(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { id } = req.params;
-                if (!id) {
-                    throw new Error("No param 'id' given");
-                }
-                const contact = yield this.service.findById(+id);
-                next({ data: contact, message: "Get conctact by id" });
-            }
-            catch (err) {
-                next(err);
-            }
-        });
-    }
-}
-exports.default = ContactController;
+};
+const _default = ContactController;
+
+//# sourceMappingURL=contact.controller.js.map

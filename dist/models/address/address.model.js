@@ -1,62 +1,68 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = require("sequelize");
-const addressState_model_1 = __importDefault(require("./addressState.model"));
-const addressType_model_1 = __importDefault(require("../static/addressType.model"));
-const sequelize_2 = __importDefault(require("../sequelize"));
-// Class entity
-class Address extends sequelize_1.Model {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _sequelize = require("sequelize");
+const _addressStateModel = _interopRequireDefault(require("./addressState.model"));
+const _addressTypeModel = _interopRequireDefault(require("../static/addressType.model"));
+const _sequelize1 = _interopRequireDefault(require("../sequelize"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
+let Address = class Address extends _sequelize.Model {
+};
 Address.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     street: {
-        type: sequelize_1.DataTypes.STRING,
+        type: _sequelize.DataTypes.STRING,
         allowNull: false
     },
     street2: {
-        type: sequelize_1.DataTypes.STRING
+        type: _sequelize.DataTypes.STRING
     },
     city: {
-        type: sequelize_1.DataTypes.STRING
+        type: _sequelize.DataTypes.STRING
     },
     zip: {
-        type: sequelize_1.DataTypes.STRING
+        type: _sequelize.DataTypes.STRING
     },
     typeId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: addressType_model_1.default,
+            model: _addressTypeModel.default,
             key: 'id'
         }
     },
     stateId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: addressState_model_1.default,
+            model: _addressStateModel.default,
             key: 'id'
         }
     },
     targetId: {
-        type: sequelize_1.DataTypes.INTEGER
+        type: _sequelize.DataTypes.INTEGER
     },
     targetType: {
-        type: sequelize_1.DataTypes.STRING
+        type: _sequelize.DataTypes.STRING
     },
     country: {
-        type: sequelize_1.DataTypes.STRING
+        type: _sequelize.DataTypes.STRING
     }
 }, {
-    sequelize: sequelize_2.default,
+    sequelize: _sequelize1.default,
     tableName: 'address'
 });
-// State's relation
-// AddressState.hasMany(Address, { foreignKey: 'stateId' });
-// Address.AddressState = Address.belongsTo(AddressState, { foreignKey: 'stateId' });
-exports.default = Address;
+const _default = Address;
+
+//# sourceMappingURL=address.model.js.map

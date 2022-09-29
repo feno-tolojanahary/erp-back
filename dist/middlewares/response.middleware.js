@@ -1,14 +1,19 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.responseHandler = void 0;
-const error_middleware_1 = require("./error.middleware");
-const success_middleware_1 = require("./success.middleware");
-const responseHandler = (dataRes, req, res, next) => {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "responseHandler", {
+    enumerable: true,
+    get: ()=>responseHandler
+});
+const _errorMiddleware = require("./error.middleware");
+const _successMiddleware = require("./success.middleware");
+const responseHandler = (dataRes, req, res, next)=>{
     if (dataRes instanceof Error) {
-        (0, error_middleware_1.errorHandler)(dataRes, req, res, next);
-    }
-    else {
-        (0, success_middleware_1.successResponse)(dataRes, req, res, next);
+        (0, _errorMiddleware.errorHandler)(dataRes, req, res, next);
+    } else {
+        (0, _successMiddleware.successResponse)(dataRes, req, res, next);
     }
 };
-exports.responseHandler = responseHandler;
+
+//# sourceMappingURL=response.middleware.js.map

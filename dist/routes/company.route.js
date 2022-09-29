@@ -1,15 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const company_controller_1 = __importDefault(require("../controllers/company.controller"));
-const base_route_1 = __importDefault(require("./base.route"));
-class CompanyRoutes extends base_route_1.default {
-    constructor() {
-        super(company_controller_1.default);
-    }
-    initializeRoutes() { }
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _companyController = _interopRequireDefault(require("../controllers/company.controller"));
+const _baseRoute = _interopRequireDefault(require("./base.route"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
+let CompanyRoutes = class CompanyRoutes extends _baseRoute.default {
+    initializeRoutes() {}
+    constructor(){
+        super(_companyController.default);
+    }
+};
 CompanyRoutes.path = "companies";
-exports.default = CompanyRoutes;
+const _default = CompanyRoutes;
+
+//# sourceMappingURL=company.route.js.map

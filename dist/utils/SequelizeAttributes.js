@@ -1,12 +1,21 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable @typescript-eslint/no-var-requires */
-const sequelize_1 = __importDefault(require("sequelize"));
-const { MockQueryInterface, read } = require('./ReaderMigrationSequelize');
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _sequelize = _interopRequireDefault(require("sequelize"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+const { MockQueryInterface , read  } = require('./ReaderMigrationSequelize');
 const newMockQueryInterface = new MockQueryInterface();
-read(sequelize_1.default, newMockQueryInterface);
+read(_sequelize.default, newMockQueryInterface);
 const SequelizeAttributes = newMockQueryInterface.attributeTables;
-exports.default = SequelizeAttributes;
+const _default = SequelizeAttributes;
+
+//# sourceMappingURL=SequelizeAttributes.js.map

@@ -1,26 +1,54 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserTitle = exports.User = exports.AddressState = exports.AddressEntity = exports.Address = exports.Contact = exports.Company = void 0;
-const company_model_1 = __importDefault(require("./company.model"));
-exports.Company = company_model_1.default;
-const contact_model_1 = __importDefault(require("./contact.model"));
-exports.Contact = contact_model_1.default;
-const address_model_1 = __importDefault(require("./address/address.model"));
-exports.Address = address_model_1.default;
-const addressEntity_model_1 = __importDefault(require("./address/addressEntity.model"));
-exports.AddressEntity = addressEntity_model_1.default;
-const addressState_model_1 = __importDefault(require("./address/addressState.model"));
-exports.AddressState = addressState_model_1.default;
-const user_1 = __importDefault(require("./users/user"));
-exports.User = user_1.default;
-const userTitle_1 = __importDefault(require("./users/userTitle"));
-exports.UserTitle = userTitle_1.default;
-company_model_1.default.hasMany(contact_model_1.default, { foreignKey: 'companyId' });
-contact_model_1.default.Company = contact_model_1.default.belongsTo(company_model_1.default, { foreignKey: 'companyId' });
-contact_model_1.default.Address = contact_model_1.default.hasOne(address_model_1.default, { as: "address", foreignKey: "targetId" });
-address_model_1.default.belongsTo(contact_model_1.default, { foreignKey: "targetId" });
-company_model_1.default.Address = company_model_1.default.hasOne(address_model_1.default, { as: "address", foreignKey: "targetId" });
-address_model_1.default.belongsTo(company_model_1.default, { as: "address", foreignKey: "targetId" });
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    Company: ()=>_companyModel.default,
+    Contact: ()=>_contactModel.default,
+    Address: ()=>_addressModel.default,
+    AddressEntity: ()=>_addressEntityModel.default,
+    AddressState: ()=>_addressStateModel.default,
+    User: ()=>_user.default,
+    UserTitle: ()=>_userTitle.default
+});
+const _companyModel = _interopRequireDefault(require("./company.model"));
+const _contactModel = _interopRequireDefault(require("./contact.model"));
+const _addressModel = _interopRequireDefault(require("./address/address.model"));
+const _addressEntityModel = _interopRequireDefault(require("./address/addressEntity.model"));
+const _addressStateModel = _interopRequireDefault(require("./address/addressState.model"));
+const _user = _interopRequireDefault(require("./users/user"));
+const _userTitle = _interopRequireDefault(require("./users/userTitle"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+_companyModel.default.hasMany(_contactModel.default, {
+    foreignKey: 'companyId'
+});
+_contactModel.default.Company = _contactModel.default.belongsTo(_companyModel.default, {
+    foreignKey: 'companyId'
+});
+_contactModel.default.Address = _contactModel.default.hasOne(_addressModel.default, {
+    as: "address",
+    foreignKey: "targetId"
+});
+_addressModel.default.belongsTo(_contactModel.default, {
+    foreignKey: "targetId"
+});
+_companyModel.default.Address = _companyModel.default.hasOne(_addressModel.default, {
+    as: "address",
+    foreignKey: "targetId"
+});
+_addressModel.default.belongsTo(_companyModel.default, {
+    as: "address",
+    foreignKey: "targetId"
+});
+
+//# sourceMappingURL=index.js.map

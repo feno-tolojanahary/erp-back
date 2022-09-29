@@ -1,18 +1,28 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _contactController = _interopRequireDefault(require("../controllers/contact.controller"));
+const _baseRoute = _interopRequireDefault(require("./base.route"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 const Router = require('router');
-const contact_controller_1 = __importDefault(require("../controllers/contact.controller"));
-const base_route_1 = __importDefault(require("./base.route"));
-class ContactRoutes extends base_route_1.default {
-    constructor() {
-        super(contact_controller_1.default);
-    }
+let ContactRoutes = class ContactRoutes extends _baseRoute.default {
     initializeRoutes() {
         this.router.get('/getById/:id', this.controller.findById);
     }
-}
+    constructor(){
+        super(_contactController.default);
+    }
+};
 ContactRoutes.path = "contacts";
-exports.default = ContactRoutes;
+const _default = ContactRoutes;
+
+//# sourceMappingURL=contact.route.js.map

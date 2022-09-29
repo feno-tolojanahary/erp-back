@@ -1,21 +1,31 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = __importDefault(require("../sequelize"));
-const sequelize_2 = require("sequelize");
-const UserTitle = sequelize_1.default.define('user_titles', {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _sequelize = _interopRequireDefault(require("../sequelize"));
+const _sequelize1 = require("sequelize");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+const UserTitle = _sequelize.default.define('user_titles', {
     id: {
-        type: sequelize_2.DataTypes.INTEGER,
+        type: _sequelize1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     name: {
-        type: sequelize_2.DataTypes.STRING
+        type: _sequelize1.DataTypes.STRING
     }
 }, {
     freezeTableName: true,
     timestamps: false
 });
-exports.default = UserTitle;
+const _default = UserTitle;
+
+//# sourceMappingURL=userTitle.js.map

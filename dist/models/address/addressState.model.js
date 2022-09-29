@@ -1,46 +1,55 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = require("sequelize");
-const sequelize_2 = __importDefault(require("../sequelize"));
-const user_1 = __importDefault(require("../users/user"));
-// Class entity
-class AddressState extends sequelize_1.Model {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _sequelize = require("sequelize");
+const _sequelize1 = _interopRequireDefault(require("../sequelize"));
+const _user = _interopRequireDefault(require("../users/user"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
+let AddressState = class AddressState extends _sequelize.Model {
+};
 AddressState.init({
     id: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     stateName: {
-        type: sequelize_1.DataTypes.STRING,
+        type: _sequelize.DataTypes.STRING,
         allowNull: false
     },
     stateCode: {
-        type: sequelize_1.DataTypes.STRING,
+        type: _sequelize.DataTypes.STRING,
         allowNull: false
     },
     country: {
-        type: sequelize_1.DataTypes.STRING,
+        type: _sequelize.DataTypes.STRING,
         allowNull: false
     },
     companyId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         defaultValue: 1
     },
     createdBy: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: _sequelize.DataTypes.INTEGER,
         references: {
-            model: user_1.default,
+            model: _user.default,
             key: 'id'
         },
         defaultValue: 1
     }
 }, {
-    sequelize: sequelize_2.default,
+    sequelize: _sequelize1.default,
     tableName: "address_states"
 });
-exports.default = AddressState;
+const _default = AddressState;
+
+//# sourceMappingURL=addressState.model.js.map

@@ -1,32 +1,41 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const address_route_1 = __importDefault(require("./address/address.route"));
-const addressState_route_1 = __importDefault(require("./address/addressState.route"));
-const company_route_1 = __importDefault(require("./company.route"));
-const static_route_1 = __importDefault(require("./static.route"));
-const contact_route_1 = __importDefault(require("./contact.route"));
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>Route
+});
+const _addressRoute = _interopRequireDefault(require("./address/address.route"));
+const _addressStateRoute = _interopRequireDefault(require("./address/addressState.route"));
+const _companyRoute = _interopRequireDefault(require("./company.route"));
+const _staticRoute = _interopRequireDefault(require("./static.route"));
+const _contactRoute = _interopRequireDefault(require("./contact.route"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 const ROUTES_CLASS = [
-    address_route_1.default,
-    addressState_route_1.default,
-    company_route_1.default,
-    contact_route_1.default
+    _addressRoute.default,
+    _addressStateRoute.default,
+    _companyRoute.default,
+    _contactRoute.default
 ];
-class Route {
-    constructor(app) {
-        this.app = app;
-        this.routesApp();
-        this.staticRoutes();
-    }
+let Route = class Route {
     routesApp() {
-        ROUTES_CLASS.forEach(Routes => {
+        ROUTES_CLASS.forEach((Routes)=>{
             this.app.use(`/${Routes.path}`, new Routes().router);
         });
     }
     staticRoutes() {
-        new static_route_1.default(this.app);
+        new _staticRoute.default(this.app);
     }
-}
-exports.default = Route;
+    constructor(app){
+        this.app = app;
+        this.routesApp();
+        this.staticRoutes();
+    }
+};
+
+//# sourceMappingURL=index.js.map

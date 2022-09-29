@@ -1,15 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const addressState_controller_1 = __importDefault(require("../../controllers/address/addressState.controller"));
-const base_route_1 = __importDefault(require("../base.route"));
-class AddressStateRoutes extends base_route_1.default {
-    constructor() {
-        super(addressState_controller_1.default);
-    }
-    initializeRoutes() { }
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _addressStateController = _interopRequireDefault(require("../../controllers/address/addressState.controller"));
+const _baseRoute = _interopRequireDefault(require("../base.route"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
+let AddressStateRoutes = class AddressStateRoutes extends _baseRoute.default {
+    initializeRoutes() {}
+    constructor(){
+        super(_addressStateController.default);
+    }
+};
 AddressStateRoutes.path = "address-states";
-exports.default = AddressStateRoutes;
+const _default = AddressStateRoutes;
+
+//# sourceMappingURL=addressState.route.js.map

@@ -1,13 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const company_service_1 = __importDefault(require("../services/company.service"));
-const base_controller_1 = __importDefault(require("./base.controller"));
-class CompanyController extends base_controller_1.default {
-    constructor() {
-        super(company_service_1.default);
-    }
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _companyService = _interopRequireDefault(require("../services/company.service"));
+const _baseController = _interopRequireDefault(require("./base.controller"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
-exports.default = CompanyController;
+let CompanyController = class CompanyController extends _baseController.default {
+    constructor(){
+        super(_companyService.default);
+    }
+};
+const _default = CompanyController;
+
+//# sourceMappingURL=company.controller.js.map

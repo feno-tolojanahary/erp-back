@@ -1,21 +1,31 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = __importDefault(require("../sequelize"));
-const sequelize_2 = require("sequelize");
-const AddressType = sequelize_1.default.define('address_types', {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _sequelize = _interopRequireDefault(require("../sequelize"));
+const _sequelize1 = require("sequelize");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+const AddressType = _sequelize.default.define('address_types', {
     id: {
-        type: sequelize_2.DataTypes.INTEGER,
+        type: _sequelize1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     name: {
-        type: sequelize_2.DataTypes.STRING
+        type: _sequelize1.DataTypes.STRING
     }
 }, {
     freezeTableName: true,
     timestamps: false
 });
-exports.default = AddressType;
+const _default = AddressType;
+
+//# sourceMappingURL=addressType.model.js.map
