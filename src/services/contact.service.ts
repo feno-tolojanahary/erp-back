@@ -26,7 +26,12 @@ class ContactService extends BaseService<Contact, ContactAttributes> {
             where: {
                 createdBy: 1
             },
-            include: [ Contact.Company, Contact.Address ]
+            include: [ 
+                Contact.Company, 
+                Contact.Address,
+                Contact.Title,
+                Contact.Tag
+            ]
         })
     }
 

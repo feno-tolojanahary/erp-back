@@ -47,6 +47,8 @@ export class Contact extends Model<ContactAttributes, ContactCreationAttributes>
 
     static Address: any;
     static Company: any;
+    static Tag: any;
+    static Title: any;
 }
 
 
