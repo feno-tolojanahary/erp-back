@@ -38,7 +38,12 @@ class ContactService extends BaseService<Contact, ContactAttributes> {
     public async findById(id: number): Promise<Contact> {
         return this.Model.findOne({ 
             where: { id },
-            include: [ Contact.Company, Contact.Address ]
+            include: [ 
+                Contact.Company, 
+                Contact.Address,
+                Contact.Title,
+                Contact.Tag
+            ]
         });
     }
 

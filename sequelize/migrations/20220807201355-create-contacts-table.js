@@ -23,6 +23,7 @@ module.exports = {
         mobile: Sequelize.DataTypes.STRING,
         email: Sequelize.DataTypes.STRING,
         website: Sequelize.DataTypes.STRING,
+        imageName: Sequelize.DataTypes.STRING,
         companyId: { 
           type: Sequelize.DataTypes.INTEGER.UNSIGNED,
           references: {

@@ -17,8 +17,11 @@ class ContactController extends BaseController {
 
     public async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const data = req.body;
-            const validationErros = await validate(new CreateContactDto(data), { validationError: { target: false } })
+            const toSave = req.body;
+            if (req.file) {
+                toSave['imageName'] = req.file.filename;
+            }
+            const validationErros = await validate(new CreateContactDto(toSave), { validationError: { target: false } })
             if (validationErros.length > 0) {
                 throw new HttpException(500, JSON.stringify(validationErros));
             }

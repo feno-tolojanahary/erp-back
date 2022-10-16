@@ -19,6 +19,8 @@ export interface ContactAttributes {
     addressId?: number | null;
     titleId?: number | null;
     tagId?: number | null;
+    imageName?: string | null;
+
     createdBy: number;
 
     address?: AddressAttributes;
@@ -40,6 +42,8 @@ export class Contact extends Model<ContactAttributes, ContactCreationAttributes>
     declare website: string | null;
     declare companyId: number | null;
     declare addressId?: number;
+    declare imageName?: string | null;
+
     declare createdBy: number;
 
     declare readonly createdAt?: Date;
@@ -68,6 +72,7 @@ Contact.init({
     mobile: DataTypes.STRING,
     email: DataTypes.STRING,
     website: DataTypes.STRING,
+    imageName: DataTypes.STRING,
     companyId: { 
         type: DataTypes.INTEGER, 
         references: {
