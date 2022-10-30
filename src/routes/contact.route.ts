@@ -13,6 +13,7 @@ class ContactRoutes extends BaseRoutes {
     initializeRoutes(): void {
         this.router.get('/getById/:id', this.controller.findById);
         this.router.post('/create', uploadImage.single('file'), bodyNotEmpty, this.controller.create);
+        this.router.put('/update/:id', uploadImage.single('file'), bodyNotEmpty, this.controller.update);
     }
     
 }

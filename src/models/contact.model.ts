@@ -28,7 +28,7 @@ export interface ContactAttributes {
     createdAt?: Date;
     updatedAt?: Date;
 }
-
+    
 export type ContactCreationAttributes = Optional<ContactAttributes, 'jobPosition' | 'phone' | 'mobile' | 'website' | 'email' | 'companyId' | 'titleId' | 'tagId'>
 
 export class Contact extends Model<ContactAttributes, ContactCreationAttributes> implements ContactAttributes {

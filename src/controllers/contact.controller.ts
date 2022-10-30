@@ -31,6 +31,20 @@ class ContactController extends BaseController {
         }
     }
 
+    public async update(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id: number = parseInt(req.params.id);
+            const toSave = req.body;
+            if (req.file) {
+                toSave['imageName'] = req.file.filename;
+            }
+            const result = await this.service.update(toSave, id);
+            next({ data: result, message: "Updated data" });
+        } catch(err) {
+            next(err);
+        }
+    }
+
     public async findById(req: Request, res: Response, next: NextFunction) {
         try {
             const { id } = req.params;
