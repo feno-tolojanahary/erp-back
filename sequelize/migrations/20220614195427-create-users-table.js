@@ -8,7 +8,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-     queryInterface.createTable('users', { 
+     await queryInterface.createTable('users', { 
         id: {
             type: Sequelize.DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,

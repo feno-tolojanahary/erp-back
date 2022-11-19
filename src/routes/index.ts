@@ -4,12 +4,14 @@ import AddressStateRoutes from './address/addressState.route';
 import CompanyRoutes from './company.route';
 import StaticRoutes from './static.route';
 import ContactRoutes from './contact.route';
+import MeetingEventRoutes from './meetingEvent.route';
 
 const ROUTES_CLASS = [
     AddressRoutes,
     AddressStateRoutes,
     CompanyRoutes,
-    ContactRoutes
+    ContactRoutes,
+    MeetingEventRoutes
 ]
 
 

@@ -16,7 +16,7 @@ Address.belongsTo(Contact, { foreignKey: "targetId" });
 Company.Address = Company.hasOne(Address, { as: "address", foreignKey: "targetId" });
 Address.belongsTo(Company, { as: "address", foreignKey: "targetId" });
 
-Contact.Tag = Contact.hasOne(Tag, { as: "tag", sourceKey: "targetId" });
+Contact.Tag = Contact.hasOne(Tag, { as: "tag", foreignKey: "targetId" });
 Tag.belongsTo(Contact, { as: "tag", targetKey: "tagId" });
 
 Contact.Title = Contact.hasOne(UserTitle, { as: "title", sourceKey: "titleId" });
