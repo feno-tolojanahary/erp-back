@@ -1,15 +1,18 @@
 import { DataTypes, Model, Optional } from "sequelize/types";
 import sequelize from "./sequelize";
-
+import Company from "./company.model";
+import Contact from "./contact.model";
+import UserModel from "./users/user";
 export interface MeetingEventAttributes {
     id: number,
     contactId: number,
-    ownerId: number,
+    companyId: number,
     title: string,
     allDay?: boolean | null | undefined,
     start: Date,
     end: Date,
-    description?: string | null | undefined
+    description?: string | null | undefined,
+    createdBy: number
 }
 
 interface MeetingEventCreationAttributes extends Optional<MeetingEventAttributes, 'id' | 'allDay' | 'description'>{}
@@ -19,12 +22,13 @@ export interface MeetingEventInstance extends Model<MeetingEventAttributes, Meet
 class MeetingEvent extends Model<MeetingEventAttributes, MeetingEventCreationAttributes> implements MeetingEventAttributes {
     declare id: number;
     declare contactId: number;
-    declare ownerId: number;
+    declare companyId: number;
     declare title: string;
     declare allDay?: boolean | null | undefined;
     declare start: Date;
     declare end: Date;
     declare description?: string | null | undefined;
+    declare createdBy: number;
 
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
@@ -40,21 +44,15 @@ MeetingEvent.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: {
-                tableName: 'contacts',
-                schema: 'public'
-            },
+            model: Contact,
             key: 'id'
         }
     },
-    ownerId: {
+    companyId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: {
-                tableName: 'users',
-                schema: 'public'
-            },
+            model: Company,
             key: 'id'
         }
     },
@@ -75,6 +73,14 @@ MeetingEvent.init({
     },
     description: {
         type: DataTypes.STRING
+    },
+    createdBy: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: UserModel,
+            key: 'id'
+        }
     }
 }, {
     tableName: 'meeting_events',

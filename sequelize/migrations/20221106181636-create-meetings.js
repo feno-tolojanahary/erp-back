@@ -24,11 +24,11 @@ module.exports = {
             key: 'id'
         }
       },
-      ownerId: {
+      companyId: {
         type: DataTypes.INTEGER,
         references: {
           model: {
-            tableName: 'users',
+            tableName: 'companies',
             schema: 'public'
           },
           key: 'id'
@@ -48,6 +48,16 @@ module.exports = {
       },
       description: {
         type: DataTypes.STRING
+      },
+      createdBy: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: {
+            tableName: 'users',
+            schema: 'public'
+          },
+          key: 'id'
+        }
       },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE

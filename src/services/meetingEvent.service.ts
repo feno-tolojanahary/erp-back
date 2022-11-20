@@ -7,7 +7,15 @@ class MeetingService extends BaseService<Meeting, MeetingEventAttributes> {
         super(Meeting);
     }
 
-    
+    public async getByContactId(contactId: number): Promise<Meeting[]> {
+        const meetingEvents = await this.Model.findAll({ 
+            where:  {
+                contactId
+            }
+         })
+
+         return meetingEvents;
+    }
 }
 
 export default MeetingService;

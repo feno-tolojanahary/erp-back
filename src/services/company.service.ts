@@ -30,7 +30,7 @@ class CompanyService extends BaseService<Company, CompanyAttributes> {
                     //     typeId: 3,
                     //     street: "street1",
                     //     street2: "street2",
-                    //     city: "the city",
+                    //     city: "the uèèèèèèèèèèècity",
                     //     stateId: 1,
                     //     zip: "The zip code",
                     //     country: "The country",

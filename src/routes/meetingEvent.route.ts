@@ -10,7 +10,7 @@ class MeetingEventRoutes extends BaseRoutes {
     }
 
     initializeRoutes(): void {
-        
+        this.router.get('/getByContactId/:contactId', this.controller.getByContactId)
     }
 }
 
